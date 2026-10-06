@@ -1,0 +1,23 @@
+.mt-grid {
+  display: grid;
+  gap: var(--_gap, var(--mt-space-3));
+  grid-template-columns: repeat(var(--_cols, 1), minmax(0, 1fr));
+  min-width: 0;
+}
+.mt-grid[data-auto] {
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--_min), 100%), 1fr));
+}
+/* The breakpoints of config/breakpoints.ts. */
+.mt-grid[data-responsive] {
+  --_cols: var(--_cols-e);
+}
+@media (max-width: 1007px) {
+  .mt-grid[data-responsive] {
+    --_cols: var(--_cols-m);
+  }
+}
+@media (max-width: 640px) {
+  .mt-grid[data-responsive] {
+    --_cols: var(--_cols-c);
+  }
+}

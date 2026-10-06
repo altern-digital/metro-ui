@@ -1,0 +1,34 @@
+[
+  {
+    "name": "everything (js)",
+    "path": "dist/index.js",
+    "import": "*",
+    "limit": "34 KB",
+    "ignore": [
+      "react",
+      "react-dom",
+      "motion",
+      "motion/react",
+      "@mantine/hooks"
+    ]
+  },
+  {
+    "name": "Button alone",
+    "path": "dist/index.js",
+    "import": "{ ConfigProvider, Button }",
+    "limit": "6 KB",
+    "ignore": [
+      "react",
+      "react-dom",
+      "motion",
+      "motion/react",
+      "@mantine/hooks"
+    ]
+  },
+  {
+    "name": "styles.css",
+    "path": "dist/styles.css",
+    "limit": "14 KB",
+    "rolldown": false
+  }
+]

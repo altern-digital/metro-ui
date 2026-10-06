@@ -1,0 +1,7 @@
+/* Every anchored panel: fixed, placed by script. Above dialogs and sheets, which open them. */
+.mt-floating {
+  position: fixed;
+  z-index: calc(var(--mt-z-dialog) + 1);
+  max-width: calc(100vw - 8px);
+  box-sizing: border-box;
+}

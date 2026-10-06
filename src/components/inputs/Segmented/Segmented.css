@@ -1,0 +1,70 @@
+/*
+ * Segmented: joined flat segments inside one 2px edge, a thin line between
+ * them; the picked one is filled with the accent.
+ */
+.mt-segmented {
+  --_h: var(--mt-control-h);
+  display: inline-flex;
+  max-width: 100%;
+  border: var(--mt-border-w) solid var(--mt-edge);
+  vertical-align: top;
+}
+.mt-segmented[data-size='sm'] {
+  --_h: calc(var(--mt-control-h) - 8px);
+}
+.mt-segmented[data-block] {
+  display: flex;
+  width: 100%;
+}
+.mt-segmented-item {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  min-width: 0;
+  min-height: calc(var(--_h) - 2 * var(--mt-border-w));
+  margin: 0;
+  padding: 0 var(--mt-control-px);
+  border: 0;
+  background: transparent;
+  color: var(--mt-text);
+  font: inherit;
+  font-size: var(--mt-text-base);
+  font-weight: 600;
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-segmented[data-size='sm'] .mt-segmented-item {
+  padding: 0 calc(var(--mt-control-px) - 4px);
+  font-size: var(--mt-text-sm);
+}
+.mt-segmented[data-block] .mt-segmented-item {
+  flex: 1;
+}
+.mt-segmented-item + .mt-segmented-item {
+  border-left: 1px solid var(--mt-border);
+}
+.mt-segmented-item[data-selected] {
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+.mt-segmented-item:disabled {
+  opacity: 0.45;
+}
+.mt-segmented-icon {
+  display: inline-flex;
+  font-size: 1.15em;
+}
+.mt-segmented-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-segmented-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

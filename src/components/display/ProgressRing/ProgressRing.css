@@ -1,0 +1,83 @@
+.mt-progress-ring {
+  --_dot: max(2px, calc(var(--_size, 32px) / 10));
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--_size, 32px);
+  height: var(--_size, 32px);
+  color: var(--_tone, var(--mt-accent));
+  vertical-align: middle;
+}
+
+/*
+ * The Windows 8 ring: each dot is an <i> the size of the ring, turned about
+ * its centre, with the dot at its top (::before). They start a beat apart,
+ * race round, crawl over the top, race again, then wink out together.
+ */
+.mt-progress-ring > i {
+  position: absolute;
+  inset: 0;
+  /* At rest (reduced motion stops the animation here): a still arc of dots. */
+  transform: rotate(calc(var(--_n, 0) * -24deg));
+  animation: mt-progress-ring 5.4s infinite backwards;
+}
+.mt-progress-ring > i::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--_dot) / 2);
+  width: var(--_dot);
+  height: var(--_dot);
+  background: currentColor;
+}
+.mt-progress-ring > i:nth-child(2) { --_n: 1; animation-delay: 0.24s; }
+.mt-progress-ring > i:nth-child(3) { --_n: 2; animation-delay: 0.48s; }
+.mt-progress-ring > i:nth-child(4) { --_n: 3; animation-delay: 0.72s; }
+.mt-progress-ring > i:nth-child(5) { --_n: 4; animation-delay: 0.96s; }
+@keyframes mt-progress-ring {
+  0% {
+    opacity: 1;
+    transform: rotate(225deg);
+    animation-timing-function: ease-out;
+  }
+  7% {
+    transform: rotate(345deg);
+    animation-timing-function: linear;
+  }
+  30% {
+    transform: rotate(455deg);
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    transform: rotate(690deg);
+    animation-timing-function: linear;
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(815deg);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(945deg);
+    animation-timing-function: ease-out;
+  }
+  76%,
+  100% {
+    opacity: 0;
+    transform: rotate(945deg);
+  }
+}
+
+/* Determinate: an arc on the border colour, from twelve o'clock. Flat ends. */
+.mt-progress-ring > svg {
+  display: block;
+  transform: rotate(-90deg);
+}
+.mt-progress-ring-track {
+  stroke: var(--mt-border);
+}
+.mt-progress-ring-arc {
+  stroke: currentColor;
+  stroke-linecap: butt;
+  transition: stroke-dasharray var(--mt-dur) var(--mt-ease-enter);
+}

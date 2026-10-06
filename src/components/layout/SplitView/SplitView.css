@@ -1,0 +1,59 @@
+.mt-split-view {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+.mt-split-view[data-pane-position='right'] {
+  flex-direction: row-reverse;
+}
+
+.mt-split-view-pane {
+  flex: none;
+  width: var(--_pane-w, 320px);
+  max-width: 100%;
+  min-height: 0;
+  overflow: auto;
+  border-right: 1px solid var(--mt-border);
+  background: var(--mt-panel);
+}
+.mt-split-view[data-pane-position='right'] > .mt-split-view-pane {
+  border-right: 0;
+  border-left: 1px solid var(--mt-border);
+}
+.mt-split-view-detail {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* The handle sits over the pane's edge: a wide hit area, a line when used. */
+.mt-split-view-handle {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: var(--mt-space-2);
+  margin: 0 calc(-1 * var(--mt-space-1));
+  cursor: col-resize;
+  touch-action: none;
+}
+.mt-split-view-handle::after {
+  content: '';
+  position: absolute;
+  inset: 0 calc(var(--mt-space-1) - 1px);
+}
+.mt-split-view-handle:is(:hover, :active, :focus-visible)::after {
+  background: var(--mt-accent);
+}
+.mt-split-view-handle:focus-visible {
+  outline: none;
+}
+
+/* One at a time on a phone: whichever shows takes the whole box. */
+.mt-split-view[data-compact] > * {
+  flex: 1;
+  width: auto;
+  border: 0;
+  background: none;
+}

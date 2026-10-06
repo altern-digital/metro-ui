@@ -1,0 +1,78 @@
+.mt-progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-2);
+  width: 100%;
+  min-width: 0;
+}
+.mt-progress-bar-label {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+}
+.mt-progress-bar-track {
+  position: relative;
+  height: 4px;
+  overflow: hidden;
+  background: var(--mt-border);
+}
+.mt-progress-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--_tone, var(--mt-accent));
+  transform: scaleX(var(--_value, 0));
+  transform-origin: left;
+  transition: transform var(--mt-dur) var(--mt-ease-enter);
+}
+[dir='rtl'] .mt-progress-bar-fill {
+  transform-origin: right;
+}
+
+/*
+ * Indeterminate: Windows Phone's five dots. Each runs the width of the bar:
+ * in fast from the left, slow across the middle, then away to the right,
+ * one after another. Every <i> spans the track so translateX(100%) is the
+ * whole width; the dot is its ::before, just off the left edge at rest.
+ * The curves are --mt-ease-enter and --mt-ease-exit written out: a var()
+ * inside @keyframes isn't resolved everywhere.
+ */
+.mt-progress-bar[data-indeterminate] > .mt-progress-bar-track {
+  background: none;
+}
+.mt-progress-bar-track > i {
+  position: absolute;
+  inset: 0;
+  /* At rest (reduced motion stops the animation here): five still dots mid-bar. */
+  transform: translateX(calc(50% + (2 - var(--_n, 0)) * 8px));
+  animation: mt-progress-dots 3.2s infinite backwards;
+}
+.mt-progress-bar-track > i::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 4px;
+  background: var(--_tone, var(--mt-accent));
+}
+.mt-progress-bar-track > i:nth-child(2) { --_n: 1; animation-delay: 0.16s; }
+.mt-progress-bar-track > i:nth-child(3) { --_n: 2; animation-delay: 0.32s; }
+.mt-progress-bar-track > i:nth-child(4) { --_n: 3; animation-delay: 0.48s; }
+.mt-progress-bar-track > i:nth-child(5) { --_n: 4; animation-delay: 0.64s; }
+@keyframes mt-progress-dots {
+  0% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+  25% {
+    transform: translateX(40%);
+    animation-timing-function: linear;
+  }
+  55% {
+    transform: translateX(60%);
+    animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+  }
+  80%,
+  100% {
+    transform: translateX(calc(100% + 8px));
+  }
+}

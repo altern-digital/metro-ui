@@ -1,0 +1,80 @@
+/* The phone tab bar, from Sanyo: icon over a small lowercase label, the current one in the accent. */
+.mt-bottom-tab-bar {
+  display: flex;
+  height: calc(var(--mt-tab-bar-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--mt-panel);
+  border-top: 1px solid var(--mt-border);
+}
+.mt-bottom-tab-bar[data-position='fixed'] {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: var(--mt-z-nav);
+}
+.mt-bottom-tab-bar[data-position='absolute'] {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: var(--mt-z-nav);
+}
+
+.mt-bottom-tab-bar-item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0 var(--mt-space-1);
+  border: 0;
+  border-top: var(--mt-border-w) solid transparent;
+  background: none;
+  color: var(--mt-muted);
+  font: inherit;
+  font-size: var(--mt-text-xs);
+  text-decoration: none;
+  text-transform: lowercase;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-bottom-tab-bar-item[data-selected] {
+  color: var(--mt-accent-text);
+  border-top-color: var(--mt-accent);
+}
+.mt-bottom-tab-bar-item:is(:disabled, [aria-disabled='true']) {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.mt-bottom-tab-bar-icon {
+  position: relative;
+  display: inline-flex;
+  font-size: 20px;
+}
+.mt-bottom-tab-bar-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-bottom-tab-bar-badge {
+  position: absolute;
+  top: -4px;
+  left: calc(100% - 6px);
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}
+.mt-bottom-tab-bar-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

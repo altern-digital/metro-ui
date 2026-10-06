@@ -1,0 +1,43 @@
+.mt-avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--_size, 40px);
+  height: var(--_size, 40px);
+  background: var(--_tone, var(--mt-tile-default));
+  color: #fff;
+  font-size: calc(var(--_size, 40px) * 0.4);
+  font-weight: 300;
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+}
+/* The circle is allowed: an opt-in exception to the square rule. */
+.mt-avatar[data-shape='circle'],
+.mt-avatar[data-shape='circle'] > .mt-avatar-image {
+  border-radius: 50%;
+}
+.mt-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Presence: a round dot cut out of the background by a ring of it. */
+.mt-avatar-status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: max(8px, calc(var(--_size, 40px) * 0.25));
+  height: max(8px, calc(var(--_size, 40px) * 0.25));
+  border: 2px solid var(--mt-bg);
+  border-radius: 50%;
+  background: var(--mt-muted);
+  transform: translate(25%, 25%);
+}
+.mt-avatar[data-status='online'] > .mt-avatar-status { background: var(--mt-success); }
+.mt-avatar[data-status='away'] > .mt-avatar-status { background: var(--mt-warning); }
+.mt-avatar[data-status='busy'] > .mt-avatar-status { background: var(--mt-danger); }

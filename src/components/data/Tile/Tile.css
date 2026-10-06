@@ -1,0 +1,188 @@
+/*
+ * Tiles: flat squares of colour on the Start grid. A cell (`.mt-tile-cell`)
+ * takes the grid place and the entrance; the face (`.mt-tile`) inside it
+ * carries the colour and leans when pressed. Sizes come from
+ * --mt-tile-size and --mt-tile-gap, so a TileGrid can rescale them.
+ */
+.mt-tile-cell {
+  --_unit: calc((var(--mt-tile-size) - var(--mt-tile-gap)) / 2);
+  --_two: calc(var(--mt-tile-size) * 2 + var(--mt-tile-gap));
+  display: block;
+  flex: none;
+  width: var(--mt-tile-size);
+  height: var(--mt-tile-size);
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.mt-tile-cell[data-size='small'] {
+  width: var(--_unit);
+  height: var(--_unit);
+  grid-column: span 1;
+  grid-row: span 1;
+}
+.mt-tile-cell[data-size='wide'] {
+  width: var(--_two);
+  grid-column: span 4;
+}
+.mt-tile-cell[data-size='large'] {
+  width: var(--_two);
+  height: var(--_two);
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+.mt-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--_fill, var(--mt-accent));
+  color: var(--_on, var(--mt-on-accent));
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: default;
+  transition: transform var(--mt-dur-fast) var(--mt-ease-enter);
+}
+/* The press: the side under the finger sinks a little. */
+.mt-tile[data-tilt] {
+  transform: perspective(calc(var(--mt-tile-size) * 4)) rotateX(var(--_rx, 0deg)) rotateY(var(--_ry, 0deg)) scale(0.97);
+}
+/*
+ * The tint the global press tracker draws is an inset shadow, which the
+ * full-bleed image and content would cover: here it is a layer on top.
+ */
+.mt-tile[data-pressable]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.mt-tile[data-pressable]:is(:active, [data-pressed]):not(:disabled, [aria-disabled='true'])::after {
+  background: var(--mt-press);
+}
+@media (hover: hover) {
+  .mt-tile[data-pressable]:hover:not(:disabled, [aria-disabled='true']) {
+    outline: 3px solid var(--mt-hover-outline);
+    outline-offset: -3px;
+  }
+}
+.mt-tile:focus-visible {
+  outline: 3px solid var(--mt-focus);
+  outline-offset: -3px;
+}
+.mt-tile:is(:disabled, [aria-disabled='true']) {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.mt-tile-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.mt-tile-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.mt-tile-content {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+}
+
+/* Icon and count: centred on small and medium, top-left on wide and large. */
+.mt-tile-glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  line-height: 1;
+  pointer-events: none;
+}
+.mt-tile-icon {
+  display: inline-flex;
+  font-size: calc(var(--mt-tile-size) * 0.3);
+}
+.mt-tile-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-tile-count {
+  font-size: calc(var(--mt-tile-size) * 0.26);
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+.mt-tile[data-size='small'] .mt-tile-icon {
+  font-size: calc(var(--mt-tile-size) * 0.2);
+}
+.mt-tile[data-size='small'] .mt-tile-count {
+  font-size: calc(var(--mt-tile-size) * 0.14);
+}
+.mt-tile:is([data-size='wide'], [data-size='large']) .mt-tile-glyph {
+  inset: 10px auto auto 12px;
+  justify-content: flex-start;
+}
+.mt-tile:is([data-size='wide'], [data-size='large']) .mt-tile-icon {
+  font-size: calc(var(--mt-tile-size) * 0.24);
+}
+.mt-tile:is([data-size='wide'], [data-size='large']) .mt-tile-count {
+  font-size: calc(var(--mt-tile-size) * 0.22);
+}
+
+/* Name bottom-left, badge bottom-right. */
+.mt-tile-foot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--mt-space-2);
+  padding: 8px 10px 8px 12px;
+  pointer-events: none;
+}
+.mt-tile-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mt-tile-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: var(--mt-text-md);
+  font-weight: 400;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.mt-tile-badge > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-tile[data-size='small'] .mt-tile-foot {
+  padding: 4px 6px;
+}
+.mt-tile[data-size='small'] .mt-tile-badge {
+  font-size: var(--mt-text-sm);
+}

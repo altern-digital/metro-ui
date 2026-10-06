@@ -1,0 +1,56 @@
+import type { ComponentDoc } from '../../types'
+
+export default {
+  name: 'Picker',
+  category: 'inputs',
+  summary: 'Windows Phone looping selectors: scroll columns of square cells, the middle one is picked.',
+  platform: 'mobile',
+  description:
+    'Each column scrolls and snaps; the cell in the middle is the value and fills with the accent, and cells further away fade. Flick on touch, drag with a mouse, click a cell, or use the arrow keys. `loop` repeats the list endlessly, as the Windows Phone date and time pickers did.\n\nDatePicker and TimePicker are ready-made Pickers. DatePicker clamps the day to the month (31 March → April gives 30 April) and keeps the time of day of the Date. TimePicker reads and writes 24-hour `HH:mm` whatever it shows.',
+  related: ['DatePicker', 'TimePicker'],
+  examples: ['Basic', 'Date', 'Time', 'Custom'],
+  props: [
+    { name: 'columns', type: '{ key: string; options: { value: string | number; label: ReactNode }[]; label?: string; loop?: boolean; width?: number | string }[]', required: true, description: 'The columns, left to right. `label` is the spoken name (default: the key).' },
+    { name: 'value', type: 'Record<string, string | number>', description: 'Controlled value of each column, by key. A missing key shows the first option.' },
+    { name: 'defaultValue', type: 'Record<string, string | number>', description: 'Starting value, uncontrolled.' },
+    { name: 'onChange', type: '(value: Record<string, string | number>, key: string) => void', description: 'The whole value and the key of the column that changed.' },
+    { name: 'loop', type: 'boolean', default: 'false', description: 'Wrap every column around. A column can override it.' },
+    { name: 'rows', type: 'number', default: '5', description: 'Rows on show, odd; the picked one is in the middle.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Not scrollable, dimmed.' },
+    { name: 'ref', type: 'Ref<HTMLDivElement>', description: 'The root.' },
+  ],
+  extraProps: {
+    DatePicker: [
+      { name: 'value', type: 'Date', description: 'Controlled date.' },
+      { name: 'defaultValue', type: 'Date', default: 'today', description: 'Starting date, uncontrolled.' },
+      { name: 'onChange', type: '(date: Date) => void', description: 'The new date, time of day kept.' },
+      { name: 'minYear', type: 'number', default: 'this year − 100', description: 'First year in the year column.' },
+      { name: 'maxYear', type: 'number', default: 'this year + 20', description: 'Last year in the year column.' },
+      { name: 'order', type: "('day' | 'month' | 'year')[]", default: "['day', 'month', 'year']", description: 'Column order.' },
+      { name: 'locale', type: 'string', default: "'en-US'", description: 'BCP 47 locale for month names.' },
+      { name: 'monthFormat', type: "'long' | 'short' | 'numeric' | '2-digit'", default: "'long'", description: 'How months are written.' },
+      { name: 'labels', type: '{ day?: string; month?: string; year?: string }', default: 'day, month, year', description: 'Spoken names of the columns.' },
+      { name: 'loop', type: 'boolean', default: 'true', description: 'Day and month wrap; the year never does.' },
+      { name: 'rows', type: 'number', default: '5', description: 'Rows on show.' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Not scrollable.' },
+    ],
+    TimePicker: [
+      { name: 'value', type: 'string', description: "Controlled time, 24-hour 'HH:mm'." },
+      { name: 'defaultValue', type: 'string', default: "'00:00'", description: 'Starting time, uncontrolled.' },
+      { name: 'onChange', type: '(value: string) => void', description: "The new time, 'HH:mm'." },
+      { name: 'use12Hours', type: 'boolean', default: 'false', description: 'Hours 1–12 and an am/pm column.' },
+      { name: 'minuteStep', type: 'number', default: '1', description: 'Minutes in steps of this.' },
+      { name: 'amLabel', type: 'string', default: "'am'", description: 'Text of the am cell.' },
+      { name: 'pmLabel', type: 'string', default: "'pm'", description: 'Text of the pm cell.' },
+      { name: 'labels', type: '{ hour?: string; minute?: string; period?: string }', default: 'hour, minute, am/pm', description: 'Spoken names of the columns.' },
+      { name: 'loop', type: 'boolean', default: 'true', description: 'Hours and minutes wrap.' },
+      { name: 'rows', type: 'number', default: '5', description: 'Rows on show.' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Not scrollable.' },
+    ],
+  },
+  accessibility: [
+    'Each column is a focusable `spinbutton` named by its label, with the picked text as `aria-valuetext`.',
+    'Arrow Up/Down step, Page Up/Down jump five, Home/End go to the ends.',
+    'Scrolling to a new value is instant under reduced motion.',
+  ],
+} satisfies ComponentDoc

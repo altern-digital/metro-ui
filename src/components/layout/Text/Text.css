@@ -1,0 +1,34 @@
+.mt-text {
+  margin: 0;
+}
+.mt-text[data-size='xs'] { font-size: var(--mt-text-xs); }
+.mt-text[data-size='sm'] { font-size: var(--mt-text-sm); }
+.mt-text[data-size='base'] { font-size: var(--mt-text-base); }
+.mt-text[data-size='md'] { font-size: var(--mt-text-md); }
+.mt-text[data-size='lg'] { font-size: var(--mt-text-lg); }
+.mt-text[data-size='xl'] { font-size: var(--mt-text-xl); }
+.mt-text[data-size='2xl'] { font-size: var(--mt-text-2xl); }
+.mt-text[data-size='3xl'] { font-size: var(--mt-text-3xl); }
+.mt-text[data-size='display'] { font-size: var(--mt-text-display); line-height: 1.1; }
+
+.mt-text[data-tone='muted'] { color: var(--mt-muted); }
+.mt-text[data-tone='accent'] { color: var(--mt-accent-text); }
+.mt-text[data-tone='danger'] { color: var(--mt-danger); }
+.mt-text[data-tone='success'] { color: var(--mt-success); }
+.mt-text[data-tone='warning'] { color: var(--mt-warning); }
+
+.mt-text[data-weight='200'] { font-weight: 200; }
+.mt-text[data-weight='300'] { font-weight: 300; }
+.mt-text[data-weight='400'] { font-weight: 400; }
+.mt-text[data-weight='600'] { font-weight: 600; }
+
+.mt-text[data-mono] {
+  font-family: var(--mt-mono);
+}
+.mt-text[data-truncate] {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

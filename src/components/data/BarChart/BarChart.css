@@ -1,0 +1,93 @@
+/*
+ * Bars in HTML, from DS Mutasi: flat blocks on a heavy baseline. Each bar
+ * grows from its base, the next a beat after the last.
+ */
+.mt-bar-chart {
+  min-width: 0;
+  font-size: var(--mt-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.mt-bar-chart-bar {
+  display: block;
+  background: var(--_bar, var(--mt-accent));
+  animation: mt-bar-grow var(--mt-dur-slow) var(--mt-ease-enter) both;
+  animation-delay: calc(var(--_i, 0) * 30ms);
+}
+.mt-bar-chart-value {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mt-bar-chart-label {
+  min-width: 0;
+  color: var(--mt-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Vertical: columns standing on the baseline. */
+.mt-bar-chart[data-orientation='vertical'] {
+  display: grid;
+  gap: 4px;
+  height: var(--_height);
+}
+.mt-bar-chart[data-orientation='vertical'] .mt-bar-chart-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+.mt-bar-chart[data-orientation='vertical'] .mt-bar-chart-value {
+  flex: none;
+  margin-bottom: 4px;
+  text-align: center;
+  line-height: 1.2;
+}
+.mt-bar-chart[data-orientation='vertical'] .mt-bar-chart-track {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+}
+.mt-bar-chart[data-orientation='vertical'] .mt-bar-chart-bar {
+  /* Leave room above a full bar for its value. */
+  height: calc(var(--_ratio) * (100% - 1.6em));
+  flex: none;
+  transform-origin: bottom;
+  --_grow: scaleY(0);
+}
+.mt-bar-chart[data-orientation='vertical'] .mt-bar-chart-label {
+  padding-top: 6px;
+  border-top: var(--mt-border-w) solid var(--mt-text);
+  text-align: center;
+}
+/* Horizontal: label, bar, value on a row. */
+.mt-bar-chart[data-orientation='horizontal'] {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px var(--mt-space-3);
+}
+.mt-bar-chart[data-orientation='horizontal'] .mt-bar-chart-item {
+  display: contents;
+}
+.mt-bar-chart[data-orientation='horizontal'] .mt-bar-chart-track {
+  display: block;
+  height: calc(var(--mt-control-h) - 8px);
+  border-left: var(--mt-border-w) solid var(--mt-text);
+}
+.mt-bar-chart[data-orientation='horizontal'] .mt-bar-chart-bar {
+  width: calc(var(--_ratio) * 100%);
+  height: 100%;
+  transform-origin: left;
+  --_grow: scaleX(0);
+}
+
+@keyframes mt-bar-grow {
+  from {
+    transform: var(--_grow);
+  }
+}

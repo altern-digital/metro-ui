@@ -1,0 +1,70 @@
+/*
+ * Toggle switch, Windows 8 / Phone style: a square 2px track with a gap
+ * inside, filled with the accent when on, and a square thumb the full height
+ * of the track that slides across. Square on purpose (Windows 10 rounded
+ * them; we don't). Only the thumb moves; colours change instantly.
+ */
+.mt-toggle-switch {
+  --_w: 44px;
+  --_h: 20px;
+  --_thumb: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--mt-space-1);
+  color: var(--mt-text);
+  cursor: default;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-toggle-switch-label {
+  color: var(--mt-muted);
+  text-transform: lowercase;
+}
+.mt-toggle-switch-row {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  min-height: var(--mt-control-h);
+}
+.mt-toggle-switch-track {
+  position: relative;
+  flex: none;
+  width: var(--_w);
+  height: var(--_h);
+  padding: 2px;
+  border: var(--mt-border-w) solid var(--mt-text);
+  background-clip: content-box;
+}
+.mt-toggle-switch[data-checked] .mt-toggle-switch-track {
+  background-color: var(--mt-accent);
+}
+.mt-toggle-switch-thumb {
+  position: absolute;
+  top: calc(-1 * var(--mt-border-w));
+  bottom: calc(-1 * var(--mt-border-w));
+  left: calc(-1 * var(--mt-border-w));
+  width: var(--_thumb);
+  background: var(--mt-text);
+  transition: transform var(--mt-dur-fast) var(--mt-ease-enter);
+}
+.mt-toggle-switch[data-checked] .mt-toggle-switch-thumb {
+  transform: translateX(calc(var(--_w) - var(--_thumb)));
+}
+.mt-toggle-switch-state {
+  min-width: 3ch;
+  font-size: var(--mt-text-md);
+  text-transform: lowercase;
+}
+@media (hover: hover) {
+  .mt-toggle-switch:not([data-disabled], [data-checked]):hover .mt-toggle-switch-track {
+    background-color: var(--mt-hover);
+  }
+}
+.mt-toggle-switch-input:focus-visible + .mt-toggle-switch-track {
+  outline: 2px solid var(--mt-focus);
+  outline-offset: 3px;
+}
+.mt-toggle-switch[data-disabled] {
+  opacity: 0.45;
+}

@@ -1,0 +1,84 @@
+/* A number on a panel, or on a tone. */
+.mt-stat-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 96px;
+  padding: 14px 16px;
+  background: var(--mt-panel);
+  color: var(--mt-text);
+}
+.mt-stat-tile[data-filled] {
+  background: var(--_fill);
+  color: var(--_on);
+}
+.mt-stat-tile-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  text-transform: lowercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mt-stat-tile-icon {
+  display: inline-flex;
+  flex: none;
+  font-size: 14px;
+}
+.mt-stat-tile-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-stat-tile-value {
+  margin-top: 2px;
+  font-size: var(--mt-text-3xl);
+  font-weight: 300;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mt-stat-tile-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px var(--mt-space-2);
+  margin-top: 2px;
+  font-size: var(--mt-text-sm);
+}
+.mt-stat-tile-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.mt-stat-tile-delta[data-good='true'] {
+  color: var(--mt-success);
+}
+.mt-stat-tile-delta[data-good='false'] {
+  color: var(--mt-danger);
+}
+.mt-stat-tile-arrow {
+  flex: none;
+  font-size: 0.85em;
+}
+.mt-stat-tile-caption {
+  min-width: 0;
+  color: var(--mt-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* On a fill, muted text and the delta are the fill's text colour, softened. */
+.mt-stat-tile[data-filled] :is(.mt-stat-tile-label, .mt-stat-tile-caption, .mt-stat-tile-delta) {
+  color: inherit;
+  opacity: 0.8;
+}

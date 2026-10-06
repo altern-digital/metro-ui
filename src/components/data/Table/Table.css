@@ -1,0 +1,198 @@
+/*
+ * A flat data table, from DS Mutasi: rows parted by thin lines, a muted
+ * header, numbers right-aligned in tabular figures, a heavy rule over the
+ * totals. The header's bottom rule doubles as the loading bar.
+ */
+.mt-table {
+  position: relative;
+  min-width: 0;
+  overflow-x: auto;
+  font-size: var(--mt-text-base);
+  font-variant-numeric: tabular-nums;
+}
+.mt-table[data-scroll] {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.mt-table-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.mt-table-caption {
+  padding: 0 0 var(--mt-space-1);
+  font-size: var(--mt-text-base);
+  font-weight: 600;
+  text-align: left;
+}
+
+.mt-table-head {
+  position: sticky;
+  top: 0;
+  z-index: var(--mt-z-sticky);
+  background: var(--mt-bg);
+}
+.mt-table-head th {
+  height: calc(var(--mt-control-h) + 4px);
+  padding: 0 var(--mt-space-2);
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  font-weight: 400;
+  text-align: left;
+  text-transform: lowercase;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.mt-table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-1);
+  height: 100%;
+  margin: 0 calc(-1 * var(--mt-space-1));
+  padding: 0 var(--mt-space-1);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+}
+.mt-table-sort-glyph {
+  flex: none;
+  opacity: 0;
+}
+.mt-table-sort[data-sorted] {
+  color: var(--mt-text);
+}
+.mt-table-sort[data-sorted] .mt-table-sort-glyph {
+  opacity: 1;
+}
+@media (hover: hover) {
+  .mt-table-sort:hover {
+    color: var(--mt-text);
+  }
+  .mt-table-sort:hover .mt-table-sort-glyph {
+    opacity: 0.5;
+  }
+  .mt-table-sort[data-sorted]:hover .mt-table-sort-glyph {
+    opacity: 1;
+  }
+}
+
+/* The header rule: a 2px line, and while loading a stretch of accent runs along it. */
+.mt-table-rule > td {
+  position: relative;
+  height: 2px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--mt-border);
+}
+.mt-table-rule i,
+.mt-table-progress i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  background: var(--mt-accent);
+  animation: mt-table-progress 1.4s var(--mt-ease-enter) infinite;
+}
+.mt-table-progress {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  background: var(--mt-border);
+}
+@keyframes mt-table-progress {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+
+.mt-table-body td,
+.mt-table-foot td {
+  padding: var(--mt-space-2);
+  border-bottom: 1px solid var(--mt-border);
+  text-align: left;
+  vertical-align: top;
+}
+.mt-table [data-align='right'] {
+  text-align: right;
+}
+.mt-table [data-align='center'] {
+  text-align: center;
+}
+.mt-table-head th[data-align='right'] .mt-table-sort {
+  flex-direction: row-reverse;
+}
+.mt-table[data-striped] .mt-table-row:nth-child(even) > td {
+  background: var(--mt-panel);
+}
+.mt-table-row[data-clickable] {
+  cursor: default;
+  user-select: none;
+}
+.mt-table-foot td {
+  border-top: var(--mt-border-w) solid var(--mt-text);
+  border-bottom: 0;
+  font-weight: 600;
+}
+.mt-table-empty {
+  padding: var(--mt-space-6) var(--mt-space-2);
+  color: var(--mt-muted);
+  text-align: center;
+}
+td.mt-table-empty {
+  text-align: center;
+}
+.mt-table[data-loading] :is(.mt-table-body, .mt-table-cards) {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Cards: one per row on a phone, each field a `title  value` line. */
+.mt-table[data-layout='cards'] {
+  overflow-x: visible;
+}
+.mt-table-cards {
+  display: flex;
+  flex-direction: column;
+}
+.mt-table-card {
+  padding: var(--mt-space-3) 0;
+  border-bottom: 1px solid var(--mt-border);
+}
+.mt-table-card[data-footer] {
+  border-top: var(--mt-border-w) solid var(--mt-text);
+  border-bottom: 0;
+  font-weight: 600;
+}
+.mt-table-card dl {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+}
+.mt-table-card-field {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--mt-space-3);
+}
+.mt-table-card-field dt {
+  flex: none;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  text-transform: lowercase;
+}
+.mt-table-card-field dd {
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,102 @@
+/* Pull down at the top to refresh: an arrow and a word, then the Metro dots. */
+.mt-pull-to-refresh {
+  position: relative;
+}
+.mt-pull-to-refresh[data-target='self'] {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+.mt-pull-to-refresh-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  text-transform: lowercase;
+  pointer-events: none;
+}
+.mt-pull-to-refresh-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  white-space: nowrap;
+}
+.mt-pull-to-refresh-arrow {
+  font-size: var(--mt-text-md);
+  transition: transform var(--mt-dur-fast) var(--mt-ease-enter);
+}
+.mt-pull-to-refresh-arrow[data-armed] {
+  transform: rotate(180deg);
+  color: var(--mt-accent-text);
+}
+
+/* The Windows Phone indeterminate dots: they rush in, crawl through the middle and rush out. */
+.mt-pull-to-refresh-dots {
+  position: relative;
+  width: min(280px, 70%);
+  height: 4px;
+  overflow: hidden;
+}
+.mt-pull-to-refresh-dots > i {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: mt-pull-to-refresh-dot 2.6s infinite;
+}
+.mt-pull-to-refresh-dots > i::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--mt-accent);
+}
+.mt-pull-to-refresh-dots > i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.mt-pull-to-refresh-dots > i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.mt-pull-to-refresh-dots > i:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.mt-pull-to-refresh-dots > i:nth-child(5) {
+  animation-delay: 0.6s;
+}
+@keyframes mt-pull-to-refresh-dot {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+  4% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(40%);
+    animation-timing-function: linear;
+  }
+  55% {
+    transform: translateX(60%);
+    animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+  }
+  78% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  79%,
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mt-pull-to-refresh-content {
+  position: relative;
+}

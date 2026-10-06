@@ -1,0 +1,4 @@
+/* IconButton is a Button with data-icon-only (square, side = control height); only the glyph is a touch bigger. */
+.mt-icon-button {
+  font-size: var(--mt-text-md);
+}

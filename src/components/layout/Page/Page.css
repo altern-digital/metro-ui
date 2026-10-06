@@ -1,0 +1,79 @@
+/*
+ * A full screen: header, an optional pivot, and a body that scrolls on its
+ * own so the title stays put. The padding is one private variable, smaller
+ * on a phone.
+ */
+.mt-page {
+  --_pad: var(--mt-space-6);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .mt-page {
+    --_pad: var(--mt-space-4);
+  }
+}
+
+.mt-page-header {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: var(--mt-space-3);
+  padding: var(--_pad) var(--_pad) var(--mt-space-4);
+}
+.mt-page-heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--mt-space-2);
+  min-width: 0;
+}
+.mt-page-heading > .mt-title {
+  overflow-wrap: anywhere;
+}
+.mt-page-actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--mt-space-1);
+  margin-left: auto;
+}
+
+/* Circle-less: just the arrow, the height of the title's cap, with the hover wash. */
+.mt-page-back {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--mt-space-8);
+  height: var(--mt-space-8);
+  margin: 0 0 0 calc(-1 * var(--mt-space-2));
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mt-text);
+  font-size: var(--mt-text-lg);
+  cursor: default;
+  touch-action: manipulation;
+}
+
+.mt-page-pivot {
+  flex: none;
+  padding: 0 var(--_pad);
+}
+
+.mt-page-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--mt-space-4) var(--_pad) var(--_pad);
+}
+.mt-page[data-bleed] > .mt-page-body {
+  padding: 0;
+}

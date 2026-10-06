@@ -1,0 +1,6 @@
+/* SearchBox wears TextField's styles. Its glyph button fills with the accent while pressed, as in Windows 8. */
+.mt-search-box-button[data-mt-press]:is(:active, [data-pressed]):not(:disabled) {
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+  box-shadow: none;
+}

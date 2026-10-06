@@ -1,0 +1,34 @@
+.mt-page-states[data-state='loading'] {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  padding: var(--mt-space-4) 0;
+  color: var(--mt-muted);
+}
+
+/* Failed: a flat red band where it happened, as in ALTC. */
+.mt-page-states[data-state='error'] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mt-space-2) var(--mt-space-3);
+  padding: var(--mt-space-3) var(--mt-space-4);
+  background: var(--mt-danger);
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+.mt-page-states-message {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mt-page-states-message > strong {
+  font-weight: 600;
+  text-transform: lowercase;
+}
+.mt-page-states[data-state='error'] > .mt-button {
+  --_fg: #fff;
+  --_line: #fff;
+}

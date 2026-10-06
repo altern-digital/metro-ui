@@ -60,6 +60,21 @@ export interface Locale {
   releaseToRefresh: string
   noOptions: string
   select: string
+  remove: string
+  resizePane: string
+  on: string
+  off: string
+  day: string
+  month: string
+  year: string
+  hour: string
+  minute: string
+  am: string
+  pm: string
+  breadcrumb: string
+  pagination: string
+  jumpTo: string
+  notifications: string
 }
 
 export const DEFAULT_LOCALE: Locale = {
@@ -85,6 +100,21 @@ export const DEFAULT_LOCALE: Locale = {
   releaseToRefresh: 'release to refresh',
   noOptions: 'no options',
   select: 'select…',
+  remove: 'remove',
+  resizePane: 'resize pane',
+  on: 'on',
+  off: 'off',
+  day: 'day',
+  month: 'month',
+  year: 'year',
+  hour: 'hour',
+  minute: 'minute',
+  am: 'am',
+  pm: 'pm',
+  breadcrumb: 'breadcrumb',
+  pagination: 'pagination',
+  jumpTo: 'jump to',
+  notifications: 'notifications',
 }
 
 /** A ready-made Indonesian locale. */
@@ -111,6 +141,21 @@ export const LOCALE_ID: Locale = {
   releaseToRefresh: 'lepas untuk memuat ulang',
   noOptions: 'tidak ada pilihan',
   select: 'pilih…',
+  remove: 'hapus',
+  resizePane: 'ubah ukuran panel',
+  on: 'aktif',
+  off: 'nonaktif',
+  day: 'hari',
+  month: 'bulan',
+  year: 'tahun',
+  hour: 'jam',
+  minute: 'menit',
+  am: 'am',
+  pm: 'pm',
+  breadcrumb: 'jejak navigasi',
+  pagination: 'halaman',
+  jumpTo: 'lompat ke',
+  notifications: 'notifikasi',
 }
 
 /** A colour for a tone: Metro and custom tones become their token, anything else passes through. */

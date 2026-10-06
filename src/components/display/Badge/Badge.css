@@ -1,0 +1,42 @@
+.mt-badge {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--mt-space-1);
+  background: var(--_tone, var(--mt-accent));
+  color: #fff;
+  font-size: var(--mt-text-xs);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.mt-badge[data-tone='accent'] {
+  color: var(--mt-on-accent);
+}
+/* A status dot: the one round thing here. */
+.mt-badge[data-dot] {
+  min-width: 0;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.mt-badge-anchor {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+.mt-badge-anchor > .mt-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform: translate(40%, -40%);
+  pointer-events: none;
+}

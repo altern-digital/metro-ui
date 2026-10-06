@@ -1,0 +1,73 @@
+/* The Windows Phone pivot (from ALTC): big, light, lowercase headers; the view slides under them. */
+.mt-pivot {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.mt-pivot-headers {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: var(--mt-space-5);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.mt-pivot-headers::-webkit-scrollbar {
+  display: none;
+}
+.mt-pivot-header {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mt-muted);
+  font: inherit;
+  font-size: var(--mt-text-3xl);
+  font-weight: 200;
+  line-height: 1.3;
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-pivot[data-size='md'] .mt-pivot-header {
+  font-size: var(--mt-text-2xl);
+}
+.mt-pivot-header[data-selected] {
+  color: var(--mt-text);
+}
+@media (hover: hover) {
+  .mt-pivot-header:hover:not(:disabled) {
+    color: var(--mt-text);
+  }
+}
+.mt-pivot-header:disabled {
+  color: var(--mt-disabled);
+}
+@media (max-width: 640px) {
+  .mt-pivot-header {
+    font-size: var(--mt-text-2xl);
+  }
+  .mt-pivot[data-size='md'] .mt-pivot-header {
+    font-size: var(--mt-text-xl);
+  }
+}
+
+/* Old and new views share one cell while one leaves and the other arrives. */
+.mt-pivot-views {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  margin-top: var(--mt-space-3);
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.mt-pivot-panel {
+  grid-area: 1 / 1;
+  min-width: 0;
+}

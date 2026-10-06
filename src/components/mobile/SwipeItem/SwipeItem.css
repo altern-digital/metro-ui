@@ -1,0 +1,99 @@
+/* A row that slides aside to reveal actions behind it. */
+.mt-swipe-item {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+.mt-swipe-item-actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+.mt-swipe-item-actions[data-side='left'] {
+  left: 0;
+}
+.mt-swipe-item-actions[data-side='right'] {
+  right: 0;
+}
+.mt-swipe-item-action {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-1);
+  margin: 0;
+  padding: 0 var(--mt-space-1);
+  border: 0;
+  background: var(--_tone);
+  color: #fff;
+  font: inherit;
+  font-size: var(--mt-text-xs);
+  text-transform: lowercase;
+  cursor: default;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-swipe-item-action-icon {
+  display: inline-flex;
+  font-size: 20px;
+}
+.mt-swipe-item-action-icon > svg,
+.mt-swipe-item-tray-button > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-swipe-item-action-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mt-swipe-item-content {
+  position: relative;
+  background: var(--mt-bg);
+  touch-action: pan-y;
+}
+
+/* With a mouse (or the keyboard), the actions wait at the row's end. */
+.mt-swipe-item-tray {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 var(--mt-space-2);
+  background: var(--mt-bg);
+  opacity: 0;
+  pointer-events: none;
+}
+.mt-swipe-item-content:focus-within .mt-swipe-item-tray:not([data-has-open]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (hover: hover) {
+  .mt-swipe-item:hover .mt-swipe-item-tray:not([data-has-open]) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.mt-swipe-item-tray-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--mt-control-h);
+  height: var(--mt-control-h);
+  margin: 0;
+  padding: 0 var(--mt-space-1);
+  border: 0;
+  background: none;
+  color: var(--_tone);
+  font: inherit;
+  font-size: var(--mt-text-md);
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}

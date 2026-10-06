@@ -1,0 +1,134 @@
+/*
+ * Text fields: the Metro white box with a 2px edge that turns accent on
+ * focus and red on error. The edge is a border outside the fill, so it shows
+ * against the page in both themes. Shared by PasswordBox and SearchBox.
+ */
+.mt-text-field {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--mt-space-1);
+  min-width: 0;
+  vertical-align: top;
+}
+.mt-text-field[data-block] {
+  display: flex;
+  width: 100%;
+}
+.mt-text-field-label {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-base);
+  text-transform: lowercase;
+}
+.mt-text-field-box {
+  --_line: var(--mt-edge);
+  /* Hover and press washes that read on the white field in either theme. */
+  --mt-hover: color-mix(in srgb, var(--mt-field-text) 8%, transparent);
+  --mt-press: color-mix(in srgb, var(--mt-field-text) 16%, transparent);
+  display: flex;
+  align-items: stretch;
+  min-height: var(--mt-control-h);
+  border: var(--mt-border-w) solid var(--_line);
+  background: var(--mt-field-bg);
+  background-clip: padding-box;
+  color: var(--mt-field-text);
+}
+@media (hover: hover) {
+  .mt-text-field:not([data-disabled]) .mt-text-field-box:hover {
+    --_line: var(--mt-muted);
+  }
+}
+.mt-text-field .mt-text-field-box:focus-within {
+  --_line: var(--mt-accent);
+}
+.mt-text-field[data-invalid] .mt-text-field-box {
+  --_line: var(--mt-danger);
+}
+.mt-text-field[data-disabled] .mt-text-field-box {
+  opacity: 0.45;
+}
+
+.mt-text-field-input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0 var(--mt-space-2);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--mt-text-md);
+}
+.mt-text-field-input:focus-visible {
+  /* The box's accent edge is the focus ring. */
+  outline: none;
+}
+.mt-text-field-input::placeholder {
+  color: var(--mt-muted);
+  opacity: 1;
+}
+textarea.mt-text-field-input {
+  padding: var(--mt-space-1) var(--mt-space-2);
+  line-height: 1.4;
+  resize: vertical;
+}
+textarea.mt-text-field-input[data-auto-resize] {
+  resize: none;
+  overflow: hidden;
+}
+.mt-text-field-input::-ms-reveal,
+.mt-text-field-input::-ms-clear {
+  display: none;
+}
+.mt-text-field-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.mt-text-field-section {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: 0 var(--mt-space-2);
+}
+.mt-text-field[data-multiline] .mt-text-field-section {
+  align-items: flex-start;
+  padding-top: var(--mt-space-1);
+}
+.mt-text-field-input + .mt-text-field-section,
+.mt-text-field-button + .mt-text-field-section {
+  padding-left: 0;
+}
+.mt-text-field-section:has(> .mt-text-field-button) {
+  padding: 0;
+}
+
+/* Glyph buttons inside the field: clear, reveal, search. */
+.mt-text-field-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--mt-control-h) - 2 * var(--mt-border-w));
+  min-height: calc(var(--mt-control-h) - 2 * var(--mt-border-w));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: var(--mt-text-md);
+  cursor: default;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-text-field-button[data-active] {
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+
+.mt-text-field-description {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+}
+.mt-text-field-error {
+  color: var(--mt-danger);
+  font-size: var(--mt-text-sm);
+}

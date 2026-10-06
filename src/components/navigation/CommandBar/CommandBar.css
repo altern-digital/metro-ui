@@ -1,0 +1,184 @@
+/*
+ * CommandBar. Desktop: Windows 10's bar of square app bar buttons. Phone:
+ * the Windows Phone app bar, round icons along the bottom that "…" lifts.
+ */
+.mt-command-bar {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  background: var(--mt-panel);
+  color: var(--mt-text);
+}
+.mt-command-bar[data-platform='desktop'] {
+  min-height: var(--mt-app-bar-h);
+}
+.mt-command-bar-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--mt-space-3);
+}
+.mt-command-bar-primary {
+  display: flex;
+  align-items: stretch;
+  margin-left: auto;
+}
+
+.mt-command-bar-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  min-width: var(--mt-app-bar-h);
+  margin: 0;
+  padding: 0 var(--mt-space-3);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--mt-text-base);
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-command-bar-button:disabled {
+  color: var(--mt-disabled);
+  pointer-events: none;
+}
+.mt-command-bar-button[data-toggled] {
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+.mt-command-bar-icon {
+  display: inline-flex;
+  flex: none;
+  font-size: 16px;
+}
+.mt-command-bar-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-command-bar[data-labels='bottom'] .mt-command-bar-button {
+  flex-direction: column;
+  gap: var(--mt-space-1);
+  min-width: 68px;
+  padding: var(--mt-space-2) var(--mt-space-2) var(--mt-space-1);
+  font-size: var(--mt-text-sm);
+}
+.mt-command-bar[data-labels='bottom'] .mt-command-bar-icon {
+  font-size: 20px;
+}
+.mt-command-bar[data-labels='collapsed'] .mt-command-bar-label,
+.mt-command-bar-button[data-more] .mt-command-bar-label {
+  display: none;
+}
+.mt-command-bar[data-labels='collapsed'] .mt-command-bar-button,
+.mt-command-bar-button[data-more] {
+  padding: 0;
+  width: var(--mt-app-bar-h);
+}
+
+/* The phone app bar. */
+.mt-command-bar[data-platform='mobile'] {
+  flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--mt-raised);
+  z-index: var(--mt-z-nav);
+}
+.mt-command-bar[data-platform='mobile']:is([data-position='fixed'], [data-position='absolute']) {
+  inset: auto 0 0 0;
+}
+.mt-command-bar[data-platform='mobile'][data-position='fixed'] {
+  position: fixed;
+}
+.mt-command-bar[data-platform='mobile'][data-position='absolute'] {
+  position: absolute;
+}
+.mt-command-bar-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: var(--mt-app-bar-h);
+}
+.mt-command-bar[data-platform='mobile'] .mt-command-bar-primary {
+  margin: 0 auto;
+  gap: var(--mt-space-3);
+}
+.mt-command-bar[data-platform='mobile'] .mt-command-bar-button {
+  flex-direction: column;
+  gap: var(--mt-space-1);
+  min-width: 64px;
+  padding: var(--mt-space-1) 0;
+  background: transparent;
+  color: inherit;
+  font-size: var(--mt-text-xs);
+}
+.mt-command-bar[data-platform='mobile'] .mt-command-bar-icon {
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--mt-border-w) solid currentColor;
+  /* The app bar button is one of the few circles in Metro. */
+  border-radius: 50%;
+  font-size: 18px;
+}
+.mt-command-bar[data-platform='mobile'] .mt-command-bar-button[data-toggled] .mt-command-bar-icon {
+  border-color: var(--mt-accent);
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+.mt-command-bar[data-platform='mobile']:not([data-open]) .mt-command-bar-label {
+  display: none;
+}
+.mt-command-bar-more {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 48px;
+  height: 32px;
+  margin: 0;
+  padding: var(--mt-space-1) 0 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 20px;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-command-bar-menu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.mt-command-bar-menu-item {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 var(--mt-space-4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--mt-text-md);
+  text-align: left;
+  text-transform: lowercase;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-command-bar-menu-item[data-toggled] {
+  color: var(--mt-accent-text);
+}
+.mt-command-bar-menu-item:disabled {
+  color: var(--mt-disabled);
+}

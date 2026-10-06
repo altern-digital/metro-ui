@@ -1,0 +1,65 @@
+/* A sheet from the bottom edge: square, flat, an accent line on top. */
+.mt-bottom-sheet-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mt-z-dialog);
+  background: var(--mt-scrim);
+}
+.mt-bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--mt-z-dialog);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--mt-panel);
+  border-top: var(--mt-border-w) solid var(--mt-accent);
+  color: var(--mt-text);
+  overscroll-behavior: contain;
+}
+.mt-bottom-sheet:focus-visible {
+  outline: none;
+}
+/* The grip: a square bar a finger pulls on. */
+.mt-bottom-sheet-grip {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: var(--mt-space-2) 0 var(--mt-space-3);
+  touch-action: none;
+  cursor: grab;
+}
+.mt-bottom-sheet-handle {
+  width: 32px;
+  height: 4px;
+  background: var(--mt-edge);
+}
+.mt-bottom-sheet-title {
+  flex: none;
+  margin: 0;
+  padding: 0 var(--mt-space-4) var(--mt-space-3);
+  font-size: var(--mt-text-xl);
+  font-weight: 200;
+  line-height: 1.15;
+  text-transform: lowercase;
+  touch-action: none;
+}
+.mt-bottom-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.mt-bottom-sheet-footer {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--mt-space-2);
+  padding: var(--mt-space-3) var(--mt-space-4);
+  border-top: 1px solid var(--mt-border);
+}

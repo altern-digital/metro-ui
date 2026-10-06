@@ -1,0 +1,39 @@
+.mt-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-3);
+  min-width: 0;
+}
+.mt-section + .mt-section {
+  margin-top: var(--mt-space-7);
+}
+.mt-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  min-height: var(--mt-control-h);
+}
+/* Windows Phone group headers: light and lowercase, the size of a list title. */
+.mt-section-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--mt-text-lg);
+  font-weight: 300;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+.mt-section-title[data-keep-case] {
+  text-transform: none;
+}
+.mt-section-actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--mt-space-1);
+  margin-left: auto;
+}
+.mt-section-description {
+  margin: calc(-1 * var(--mt-space-2)) 0 0;
+  color: var(--mt-muted);
+}

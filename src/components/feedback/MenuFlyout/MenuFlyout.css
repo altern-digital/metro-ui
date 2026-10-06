@@ -1,0 +1,102 @@
+/* Windows 10 menu: flat panel, 2px edge, lowercase 32px rows. */
+.mt-menu {
+  min-width: 180px;
+  max-height: calc(100vh - 8px);
+  overflow-y: auto;
+  padding: var(--mt-space-1) 0;
+  background: var(--mt-panel);
+  border: var(--mt-border-w) solid var(--mt-edge);
+  color: var(--mt-text);
+}
+.mt-menu:focus-visible {
+  outline: none;
+}
+.mt-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  width: 100%;
+  min-height: 32px;
+  padding: 0 var(--mt-space-3);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--mt-text-sm);
+  text-align: start;
+  text-transform: lowercase;
+  cursor: default;
+  box-sizing: border-box;
+}
+.mt-menu[data-coarse] .mt-menu-item {
+  min-height: 44px;
+}
+.mt-menu-item:focus {
+  outline: none;
+}
+.mt-menu-item:focus-visible,
+.mt-menu-item:focus,
+.mt-menu-item[data-expanded] {
+  background: var(--mt-hover);
+}
+.mt-menu-item[aria-disabled='true'] {
+  color: var(--mt-disabled);
+}
+.mt-menu-item[data-danger]:not([aria-disabled='true']) {
+  color: var(--mt-danger);
+}
+.mt-menu-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  font-size: 16px;
+}
+.mt-menu-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mt-menu-shortcut {
+  flex: none;
+  padding-left: var(--mt-space-4);
+  color: var(--mt-muted);
+  text-transform: none;
+}
+.mt-menu-chevron {
+  flex: none;
+  display: inline-flex;
+}
+.mt-menu-divider {
+  height: 1px;
+  margin: var(--mt-space-1) 0;
+  background: var(--mt-border);
+}
+
+/* Mobile: the same rows, big, in a sheet. */
+.mt-menu-sheet-list {
+  padding-bottom: var(--mt-space-2);
+}
+.mt-menu-sheet-list .mt-menu-item {
+  min-height: 48px;
+  padding: 0 var(--mt-space-4);
+  gap: var(--mt-space-4);
+  font-size: var(--mt-text-lg);
+}
+.mt-menu-sheet-list .mt-menu-item:focus {
+  background: transparent;
+}
+.mt-menu-sheet-list .mt-menu-item:focus-visible {
+  background: var(--mt-hover);
+}
+.mt-menu-sheet-list .mt-menu-icon {
+  width: 20px;
+  font-size: 20px;
+}
+.mt-menu-back-glyph {
+  display: inline-flex;
+  transform: scaleX(-1);
+}

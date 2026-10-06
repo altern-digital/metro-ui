@@ -1,0 +1,72 @@
+/*
+ * App bar button: a glyph in a 2px circle, a small lowercase caption under
+ * it. The circle is one of the few allowed radii (CONTRIBUTING: "AppBarButton
+ * (circle)"). Hover and press act on the circle, not the whole hit area: it
+ * fills with the text colour and the glyph turns to the background, as on
+ * Windows Phone. A toggled (`pressed`) button stays filled.
+ */
+.mt-app-bar-button {
+  --_size: calc(var(--mt-control-h) + 4px);
+  display: inline-flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mt-space-1);
+  min-width: calc(var(--_size) + var(--mt-space-5));
+  margin: 0;
+  padding: var(--mt-space-1) var(--mt-space-1);
+  border: 0;
+  background: transparent;
+  color: var(--mt-text);
+  font: inherit;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-app-bar-button-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--_size);
+  height: var(--_size);
+  border: var(--mt-border-w) solid currentColor;
+  border-radius: 50%;
+  font-size: calc(var(--_size) * 0.45);
+}
+.mt-app-bar-button-circle > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-app-bar-button-label {
+  max-width: calc(var(--_size) + var(--mt-space-7));
+  overflow: hidden;
+  font-size: var(--mt-text-xs);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .mt-app-bar-button:hover:not(:disabled) .mt-app-bar-button-circle {
+    background: var(--mt-hover);
+  }
+}
+/* The press tint goes on the circle, not the rectangle around it. */
+.mt-app-bar-button[data-mt-press]:is(:active, [data-pressed]):not(:disabled) {
+  box-shadow: none;
+}
+.mt-app-bar-button[data-mt-press]:is(:active, [data-pressed]):not(:disabled) .mt-app-bar-button-circle,
+.mt-app-bar-button[data-on] .mt-app-bar-button-circle {
+  border-color: var(--mt-text);
+  background: var(--mt-text);
+  color: var(--mt-bg);
+}
+.mt-app-bar-button:focus-visible {
+  outline-offset: 0;
+}
+.mt-app-bar-button:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}

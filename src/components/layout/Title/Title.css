@@ -1,0 +1,36 @@
+.mt-title {
+  margin: 0;
+  font-size: var(--mt-text-display);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+}
+.mt-title[data-level='2'] {
+  font-size: var(--mt-text-3xl);
+  line-height: 1.1;
+}
+.mt-title[data-level='3'] {
+  font-size: var(--mt-text-xl);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+.mt-title[data-level='4'] {
+  font-size: var(--mt-text-lg);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.mt-title[data-keep-case] {
+  text-transform: none;
+}
+
+.mt-subtitle {
+  margin: 0;
+  font-size: var(--mt-text-lg);
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--mt-muted);
+  overflow-wrap: anywhere;
+}

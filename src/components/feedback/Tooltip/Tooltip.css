@@ -1,0 +1,13 @@
+/* A small flat box: raised surface, 1px edge, no shadow, no pointer events. */
+.mt-floating.mt-tooltip {
+  z-index: var(--mt-z-tooltip);
+  max-width: min(320px, calc(100vw - 8px));
+  padding: var(--mt-space-1) var(--mt-space-2);
+  background: var(--mt-raised);
+  border: 1px solid var(--mt-edge);
+  color: var(--mt-text);
+  font-size: var(--mt-text-sm);
+  line-height: 1.35;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+}

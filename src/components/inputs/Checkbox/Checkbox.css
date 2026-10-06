@@ -1,0 +1,65 @@
+/*
+ * Check box: a square 2px box beside its label. Checked or mixed, it fills
+ * with the accent and the glyph is drawn in --mt-on-accent. The native
+ * input is visually hidden; its focus ring is drawn on the box.
+ */
+.mt-checkbox {
+  --_line: var(--mt-text);
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--mt-space-2);
+  min-height: var(--mt-control-h);
+  padding: calc((var(--mt-control-h) - 20px) / 2) 0;
+  color: var(--mt-text);
+  cursor: default;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-checkbox-box {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: var(--mt-border-w) solid var(--_line);
+  background: transparent;
+  color: var(--mt-on-accent);
+  font-size: 16px;
+}
+.mt-checkbox:is([data-checked], [data-indeterminate]) {
+  --_line: var(--mt-accent);
+}
+.mt-checkbox:is([data-checked], [data-indeterminate]) .mt-checkbox-box {
+  background: var(--mt-accent);
+}
+@media (hover: hover) {
+  .mt-checkbox:not([data-disabled], [data-checked], [data-indeterminate]):hover .mt-checkbox-box {
+    background: var(--mt-hover);
+  }
+}
+.mt-checkbox:not([data-disabled]):active .mt-checkbox-box {
+  box-shadow: inset 0 0 0 100vmax var(--mt-press);
+}
+.mt-checkbox-input:focus-visible + .mt-checkbox-box {
+  outline: 2px solid var(--mt-focus);
+  outline-offset: 2px;
+}
+.mt-checkbox-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 20px;
+}
+.mt-checkbox-label {
+  font-size: var(--mt-text-md);
+}
+.mt-checkbox-description {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  line-height: 1.4;
+}
+.mt-checkbox[data-disabled] {
+  opacity: 0.45;
+}

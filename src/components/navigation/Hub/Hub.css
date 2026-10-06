@@ -1,0 +1,98 @@
+/* The Windows 8 hub / Windows Phone panorama: a title over sideways sections, a background drifting slower. */
+.mt-hub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mt-hub-bg {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: -1;
+  width: 150%;
+  background-position: left center;
+  background-size: cover;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.mt-hub-head {
+  flex: none;
+  overflow: hidden;
+  padding: var(--mt-space-4) var(--mt-space-7) 0;
+}
+.mt-hub-title-track {
+  will-change: transform;
+}
+.mt-hub-title {
+  margin: 0;
+  font-size: max(var(--mt-text-display), 56px);
+  font-weight: 200;
+  line-height: 1.15;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.mt-hub-sections {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: var(--mt-space-8);
+  padding: var(--mt-space-4) var(--mt-space-7) var(--mt-space-6);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--mt-space-7);
+  overscroll-behavior-x: contain;
+}
+.mt-hub-section {
+  --_w: 400px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  width: var(--_w);
+  min-height: 0;
+  scroll-snap-align: start;
+}
+.mt-hub-section-title {
+  flex: none;
+  margin: 0 0 var(--mt-space-3);
+  font-size: var(--mt-text-xl);
+  font-weight: 300;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+.mt-hub-section-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* The phone panorama: one full-width panel per swipe. */
+.mt-hub[data-platform='mobile'] .mt-hub-head {
+  padding: var(--mt-space-2) var(--mt-space-4) 0;
+}
+.mt-hub[data-platform='mobile'] .mt-hub-title {
+  font-size: max(var(--mt-text-display), 64px);
+}
+.mt-hub[data-platform='mobile'] .mt-hub-sections {
+  gap: 0;
+  padding: var(--mt-space-2) 0 var(--mt-space-4);
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0;
+  scrollbar-width: none;
+}
+.mt-hub[data-platform='mobile'] .mt-hub-sections::-webkit-scrollbar {
+  display: none;
+}
+.mt-hub[data-platform='mobile'] .mt-hub-section {
+  width: 100%;
+  padding: 0 var(--mt-space-4);
+  scroll-snap-stop: always;
+}
+.mt-hub[data-platform='mobile'] .mt-hub-section-title {
+  font-size: var(--mt-text-2xl);
+  font-weight: 200;
+}

@@ -1,0 +1,15 @@
+/* A Windows 10 flyout: flat panel, 2px edge, no shadow. */
+.mt-popover {
+  min-width: 120px;
+  max-height: calc(100vh - 8px);
+  overflow: auto;
+  padding: var(--mt-space-3) var(--mt-space-4);
+  background: var(--mt-panel);
+  border: var(--mt-border-w) solid var(--mt-edge);
+  color: var(--mt-text);
+  font-size: var(--mt-text-base);
+  overscroll-behavior: contain;
+}
+.mt-popover:focus-visible {
+  outline: none;
+}

@@ -1,0 +1,104 @@
+/*
+ * Fold and Expander share a shape: a header button with a chevron that turns,
+ * and a body that folds by height (motion `folding`, so it needs overflow
+ * hidden). The Expander puts it in a bordered box.
+ */
+.mt-fold,
+.mt-expander {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mt-fold-header,
+.mt-expander-header {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  width: 100%;
+  min-height: var(--mt-control-h);
+  margin: 0;
+  padding: var(--mt-space-2) 0;
+  border: 0;
+  background: none;
+  color: var(--mt-text);
+  text-align: left;
+  cursor: default;
+  touch-action: manipulation;
+  user-select: none;
+}
+.mt-fold-header:disabled,
+.mt-expander-header:disabled {
+  opacity: 0.45;
+}
+
+.mt-fold-icon,
+.mt-expander-icon {
+  display: inline-flex;
+  flex: none;
+  font-size: var(--mt-text-lg);
+}
+.mt-fold-icon > svg,
+.mt-expander-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-fold-heading,
+.mt-expander-heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mt-fold-title,
+.mt-expander-title {
+  font-size: var(--mt-text-lg);
+  font-weight: 300;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+.mt-expander-title {
+  font-size: var(--mt-text-md);
+  font-weight: 400;
+}
+:is(.mt-fold-title, .mt-expander-title)[data-keep-case] {
+  text-transform: none;
+}
+.mt-fold-description,
+.mt-expander-description {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+}
+
+.mt-fold-chevron,
+.mt-expander-chevron {
+  flex: none;
+  font-size: var(--mt-text-md);
+  transition: transform var(--mt-dur) var(--mt-ease-enter);
+}
+.mt-fold[data-open] > .mt-fold-header > .mt-fold-chevron,
+.mt-expander[data-open] > .mt-expander-header > .mt-expander-chevron {
+  transform: rotate(180deg);
+}
+
+.mt-fold-fold,
+.mt-expander-fold {
+  overflow: hidden;
+}
+.mt-fold-body {
+  padding: var(--mt-space-2) 0 var(--mt-space-3);
+}
+
+/* The Expander: a box with a 1px edge; the body sits under a line. */
+.mt-expander {
+  border: 1px solid var(--mt-border);
+  background: var(--mt-panel);
+}
+.mt-expander-header {
+  padding: var(--mt-space-3) var(--mt-space-4);
+}
+.mt-expander-body {
+  padding: var(--mt-space-4);
+  border-top: 1px solid var(--mt-border);
+}

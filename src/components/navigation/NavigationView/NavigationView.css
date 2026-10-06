@@ -1,0 +1,224 @@
+/* Windows 10's NavigationView: a pane of rows beside the page, an icon strip, or a bottom tab bar. */
+.mt-navigation-view {
+  --_row: 40px;
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+@media (pointer: coarse) {
+  .mt-navigation-view {
+    --_row: 48px;
+  }
+}
+.mt-navigation-view-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.mt-navigation-view-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.mt-navigation-view[data-mode='bottom'] .mt-navigation-view-content {
+  padding-bottom: calc(var(--mt-tab-bar-h) + env(safe-area-inset-bottom, 0px));
+}
+
+/* The pane. */
+.mt-navigation-view-pane {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  width: var(--mt-nav-compact-w);
+  min-height: 0;
+  background: var(--mt-panel);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.mt-navigation-view-pane[data-wide] {
+  width: var(--mt-nav-w);
+}
+.mt-navigation-view-pane[data-floating] {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: var(--mt-z-nav);
+  border-right: 1px solid var(--mt-border);
+}
+.mt-navigation-view-pane-top,
+.mt-navigation-view-top {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-height: var(--mt-app-bar-h);
+}
+.mt-navigation-view-top {
+  padding-right: var(--mt-space-4);
+}
+.mt-navigation-view[data-mode='bottom'] .mt-navigation-view-top {
+  padding-left: var(--mt-space-4);
+}
+.mt-navigation-view-burger {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--mt-nav-compact-w);
+  height: var(--mt-app-bar-h);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mt-text);
+  font-size: 16px;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-navigation-view-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--mt-text-md);
+  font-weight: 600;
+  text-transform: lowercase;
+}
+.mt-navigation-view-items {
+  display: flex;
+  flex-direction: column;
+}
+.mt-navigation-view-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--mt-border);
+}
+
+/* A row: icon in the strip's width, then the label. */
+.mt-navigation-view-item {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  width: 100%;
+  min-height: var(--_row);
+  margin: 0;
+  padding: 0 var(--mt-space-3) 0 0;
+  border: 0;
+  background: none;
+  color: var(--mt-text);
+  font: inherit;
+  font-size: var(--mt-text-md);
+  text-align: left;
+  text-decoration: none;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-navigation-view-item[data-depth] {
+  padding-left: var(--mt-space-6);
+}
+.mt-navigation-view-item[data-selected] {
+  color: var(--mt-accent-text);
+}
+.mt-navigation-view-item[data-selected]::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 4px;
+  background: var(--mt-accent);
+}
+.mt-navigation-view-item:is(:disabled, [aria-disabled='true']) {
+  color: var(--mt-disabled);
+  pointer-events: none;
+}
+.mt-navigation-view-icon {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--mt-nav-compact-w);
+  font-size: 16px;
+}
+.mt-navigation-view-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-navigation-view-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mt-navigation-view-badge {
+  flex: none;
+  min-width: 20px;
+  height: 20px;
+  margin-left: var(--mt-space-2);
+  padding: 0 var(--mt-space-1);
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+  font-size: var(--mt-text-xs);
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+.mt-navigation-view-badge[data-dot] {
+  position: absolute;
+  top: 8px;
+  left: calc(var(--mt-nav-compact-w) / 2 + 4px);
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  padding: 0;
+}
+.mt-navigation-view-chevron {
+  flex: none;
+  margin-left: var(--mt-space-2);
+  font-size: var(--mt-text-sm);
+  transition: transform var(--mt-dur-fast) var(--mt-ease-enter);
+}
+.mt-navigation-view-chevron[data-open] {
+  transform: rotate(180deg);
+}
+
+/* "More" on a phone: a panel rising from the bottom edge over a scrim. */
+.mt-navigation-view-sheet-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mt-z-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.mt-navigation-view-sheet-layer[data-position='absolute'] {
+  position: absolute;
+}
+.mt-navigation-view-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--mt-scrim);
+}
+.mt-navigation-view-sheet {
+  position: relative;
+  max-height: 80%;
+  padding: var(--mt-space-2) 0 calc(var(--mt-space-2) + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--mt-raised);
+}
+.mt-navigation-view-heading {
+  padding: var(--mt-space-3) var(--mt-space-4) var(--mt-space-1);
+  color: var(--mt-muted);
+  font-size: var(--mt-text-xs);
+  font-weight: 600;
+  text-transform: lowercase;
+}

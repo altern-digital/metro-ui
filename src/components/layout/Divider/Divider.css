@@ -1,0 +1,37 @@
+.mt-divider {
+  flex: none;
+  align-self: stretch;
+  height: 1px;
+  margin: var(--mt-space-3) 0;
+  background: var(--mt-border);
+}
+.mt-divider[data-orientation='vertical'] {
+  width: 1px;
+  height: auto;
+  min-height: 1em;
+  margin: 0 var(--mt-space-2);
+}
+/* With a label the lines are its two sides. */
+.mt-divider[data-labelled] {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  height: auto;
+  background: none;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  text-transform: lowercase;
+}
+.mt-divider[data-labelled][data-keep-case] {
+  text-transform: none;
+}
+.mt-divider[data-labelled]::before,
+.mt-divider[data-labelled]::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--mt-border);
+}
+.mt-divider-label {
+  flex: none;
+}

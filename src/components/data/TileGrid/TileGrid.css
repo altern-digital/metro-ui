@@ -1,0 +1,50 @@
+/*
+ * The Start screen. Its tracks are half cells, so a small tile takes one,
+ * medium two by two, wide four by two and large four by four, and dense
+ * flow packs them. The cell shrinks to fit two across a narrow container.
+ */
+.mt-tile-grid {
+  --_base: var(--mt-tile-size);
+  container-type: inline-size;
+  display: flex;
+  min-width: 0;
+}
+.mt-tile-grid[data-layout='horizontal'] {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--mt-space-8);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-bottom: var(--mt-space-4);
+}
+.mt-tile-grid[data-layout='vertical'] {
+  flex-direction: column;
+  gap: var(--mt-space-6);
+}
+
+.mt-tile-grid-group {
+  --mt-tile-size: min(var(--_base), calc((100cqi - var(--mt-tile-gap)) / 2));
+  --_unit: calc((var(--mt-tile-size) - var(--mt-tile-gap)) / 2);
+  flex: none;
+  min-width: 0;
+}
+.mt-tile-grid-title {
+  margin: 0 0 var(--mt-space-3);
+  font-size: var(--mt-text-xl);
+  font-weight: 200;
+  line-height: 1.2;
+  text-transform: lowercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mt-tile-grid-cells {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--_unit));
+  grid-auto-rows: var(--_unit);
+  grid-auto-flow: row dense;
+  gap: var(--mt-tile-gap);
+}
+.mt-tile-grid[data-layout='horizontal'] .mt-tile-grid-cells {
+  grid-template-columns: repeat(var(--_cols), var(--_unit));
+}

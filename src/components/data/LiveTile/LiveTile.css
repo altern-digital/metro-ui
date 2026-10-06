@@ -1,0 +1,40 @@
+/* A live tile's faces stack in the tile's content layer; one shows at a time. */
+.mt-live-tile-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  backface-visibility: hidden;
+}
+.mt-live-tile-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mt-live-tile-body {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 10px 12px 32px;
+  overflow: hidden;
+  font-size: var(--mt-text-md);
+  line-height: 1.3;
+}
+/* Peek: the picture on top, the content under it; the face slides up by half to show it. */
+.mt-live-tile-face[data-peek] {
+  bottom: auto;
+  height: 200%;
+}
+.mt-live-tile-face[data-peek] > .mt-live-tile-image {
+  bottom: auto;
+  height: 50%;
+}
+.mt-live-tile-face[data-peek] > .mt-live-tile-body {
+  top: 50%;
+}
+/* A text face fills the tile, so the glyph steps aside while it shows (instantly, as Metro does). */
+.mt-live-tile[data-text-face] .mt-tile-glyph {
+  visibility: hidden;
+}

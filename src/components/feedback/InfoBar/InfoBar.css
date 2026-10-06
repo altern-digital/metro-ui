@@ -1,0 +1,60 @@
+/* An inline message: a 4px severity bar on the left, or a 15% tint of it. */
+.mt-info-bar {
+  --mt-info-bar-color: var(--mt-info);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mt-space-3);
+  padding: var(--mt-space-3) var(--mt-space-3) var(--mt-space-3) var(--mt-space-4);
+  background: var(--mt-panel);
+  border-left: 4px solid var(--mt-info-bar-color);
+  color: var(--mt-text);
+  font-size: var(--mt-text-sm);
+  line-height: 1.4;
+}
+.mt-info-bar[data-severity='success'] {
+  --mt-info-bar-color: var(--mt-success);
+}
+.mt-info-bar[data-severity='warning'] {
+  --mt-info-bar-color: var(--mt-warning);
+}
+.mt-info-bar[data-severity='error'] {
+  --mt-info-bar-color: var(--mt-danger);
+}
+.mt-info-bar[data-appearance='fill'] {
+  border-left: 0;
+  background: color-mix(in srgb, var(--mt-info-bar-color) 15%, var(--mt-panel));
+}
+.mt-info-bar-icon {
+  flex: none;
+  display: inline-flex;
+  padding-top: 2px;
+  color: var(--mt-info-bar-color);
+  font-size: 16px;
+}
+.mt-info-bar-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: 1px;
+}
+.mt-info-bar-title {
+  margin-right: var(--mt-space-2);
+  font-weight: 600;
+}
+.mt-info-bar-action {
+  flex: none;
+  align-self: center;
+}
+.mt-info-bar-close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px -4px -4px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mt-muted);
+  font-size: 14px;
+}

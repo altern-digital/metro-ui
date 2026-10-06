@@ -1,0 +1,73 @@
+/* The Windows Phone jump list: letter tiles over a scrim. */
+.mt-jump-list {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mt-z-dialog);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(var(--mt-space-6) + env(safe-area-inset-top, 0px)) var(--mt-space-4) var(--mt-space-6);
+  overflow-y: auto;
+  background: var(--mt-scrim);
+}
+.mt-jump-list-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--mt-space-2);
+  width: 100%;
+  max-width: 400px;
+}
+.mt-jump-list-tile {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: var(--mt-space-1) var(--mt-space-2);
+  border: 0;
+  background: var(--mt-raised);
+  color: var(--mt-disabled);
+  font: inherit;
+  font-size: var(--mt-text-3xl);
+  font-weight: 300;
+  line-height: 1;
+  text-transform: lowercase;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-jump-list-tile[data-present] {
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+
+/* The group header that opens it. */
+.mt-jump-list-header {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mt-text);
+  font: inherit;
+  cursor: default;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-jump-list-header-letter {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 44px;
+  height: 44px;
+  padding: 2px 4px;
+  border: var(--mt-border-w) solid var(--mt-accent);
+  color: var(--mt-accent-text);
+  font-size: var(--mt-text-xl);
+  font-weight: 300;
+  line-height: 1;
+  text-transform: lowercase;
+}

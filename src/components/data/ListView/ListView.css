@@ -1,0 +1,143 @@
+/* Windows Phone lists: type does the work, no boxes around rows. */
+.mt-list-view {
+  display: block;
+  min-width: 0;
+}
+.mt-list-view-header {
+  padding: 0 var(--mt-space-3) var(--mt-space-2);
+  font-size: var(--mt-text-xl);
+  font-weight: 200;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+.mt-list-view-items {
+  display: block;
+}
+
+/* A letter group: the Windows Phone square with the letter in its corner. */
+.mt-list-view-group-header {
+  padding: var(--mt-space-3) var(--mt-space-3) var(--mt-space-1);
+}
+.mt-list-view-letter {
+  display: inline-flex;
+  align-items: flex-end;
+  width: calc(var(--mt-control-h) + 12px);
+  height: calc(var(--mt-control-h) + 12px);
+  padding: 0 0 2px 6px;
+  outline: var(--mt-border-w) solid var(--mt-accent);
+  outline-offset: calc(-1 * var(--mt-border-w));
+  color: var(--mt-accent-text);
+  font-size: var(--mt-text-xl);
+  font-weight: 300;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+/* A row (or the button or link filling a pressable one). */
+.mt-list-item,
+.mt-list-item-target {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  width: 100%;
+  min-height: calc(var(--mt-control-h) + 16px);
+  margin: 0;
+  padding: var(--mt-space-2) var(--mt-space-3);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+.mt-list-item[data-wrap] {
+  display: block;
+  padding: 0;
+}
+:is(button, a).mt-list-item,
+.mt-list-item-target,
+.mt-list-item[role='option'] {
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: default;
+}
+.mt-list-view[data-dividers] .mt-list-item + .mt-list-item {
+  border-top: 1px solid var(--mt-border);
+}
+
+.mt-list-item-leading,
+.mt-list-item-trailing {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+}
+.mt-list-item-square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--mt-control-h) + 8px);
+  height: calc(var(--mt-control-h) + 8px);
+  background: var(--mt-raised);
+  color: var(--mt-text);
+  font-size: 20px;
+}
+.mt-list-item-square[data-filled] {
+  background: var(--_fill);
+  color: var(--_on);
+}
+.mt-list-item-square > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-list-item-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.mt-list-item-title {
+  font-size: var(--mt-text-lg);
+  font-weight: 400;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mt-list-item-subtitle {
+  color: var(--mt-muted);
+  font-size: var(--mt-text-base);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mt-list-item-meta {
+  flex: none;
+  align-self: flex-start;
+  padding-top: 3px;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Selected: an accent bar on the left and the title in the accent. */
+.mt-list-item[data-selected]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--mt-accent);
+  pointer-events: none;
+}
+.mt-list-item[data-selected] .mt-list-item-title {
+  color: var(--mt-accent-text);
+}
+.mt-list-item[data-disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}

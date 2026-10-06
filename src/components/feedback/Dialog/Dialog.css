@@ -1,0 +1,114 @@
+/* The Metro message dialog: a full-width band over a scrim, content in a column. */
+.mt-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mt-z-dialog);
+  background: var(--mt-scrim);
+}
+.mt-dialog-layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mt-z-dialog);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.mt-dialog {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: var(--mt-space-6) var(--mt-space-4);
+  background: var(--mt-panel);
+  color: var(--mt-text);
+}
+.mt-dialog:focus-visible {
+  outline: none;
+}
+.mt-dialog-column {
+  margin-inline: auto;
+}
+.mt-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mt-space-3);
+  margin-bottom: var(--mt-space-4);
+}
+.mt-dialog-title {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: var(--mt-text-xl);
+  font-weight: 300;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+.mt-dialog-body {
+  font-size: var(--mt-text-base);
+  line-height: 1.45;
+}
+.mt-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--mt-space-2);
+  margin-top: var(--mt-space-6);
+}
+.mt-dialog-close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: calc(-1 * var(--mt-space-2)) calc(-1 * var(--mt-space-2)) 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 18px;
+}
+.mt-dialog-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--mt-control-h);
+  margin-top: var(--mt-space-3);
+  padding: 0 var(--mt-space-2);
+  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-field-bg);
+  color: var(--mt-field-text);
+  font: inherit;
+}
+.mt-dialog-input:focus {
+  border-color: var(--mt-accent);
+  outline: none;
+}
+
+/* Mobile: a full-screen page, the buttons pinned to the bottom. */
+.mt-dialog-layer[data-platform='mobile'] {
+  justify-content: stretch;
+  overflow: hidden;
+}
+.mt-dialog-layer[data-platform='mobile'] .mt-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: none;
+  padding: calc(var(--mt-space-4) + env(safe-area-inset-top, 0px)) var(--mt-space-4) calc(var(--mt-space-4) + env(safe-area-inset-bottom, 0px));
+}
+.mt-dialog-layer[data-platform='mobile'] .mt-dialog-title {
+  font-size: var(--mt-text-2xl);
+  font-weight: 200;
+}
+.mt-dialog-layer[data-platform='mobile'] .mt-dialog-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.mt-dialog-layer[data-platform='mobile'] .mt-dialog-actions {
+  margin-top: var(--mt-space-4);
+}
+.mt-dialog-layer[data-platform='mobile'] .mt-dialog-actions > * {
+  flex: 1 1 0;
+}

@@ -1,0 +1,73 @@
+/*
+ * Picker: the Windows Phone looping selector. Each column is a scroller with
+ * CSS scroll snap; padding above and below lets the first and last rows
+ * reach the middle. A row is a square-edged cell with a gap around it; the
+ * picked one is filled with the accent, and rows fade by their distance from
+ * it (data-offset), not with a gradient mask.
+ */
+.mt-picker {
+  --_row: max(var(--mt-control-h), 40px);
+  --_rows: 5;
+  display: inline-flex;
+  gap: var(--mt-space-2);
+  max-width: 100%;
+  user-select: none;
+}
+.mt-picker-column {
+  flex: none;
+  min-width: 64px;
+  height: calc(var(--_row) * var(--_rows));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-picker-column::-webkit-scrollbar {
+  display: none;
+}
+.mt-picker-column[data-dragging] {
+  scroll-snap-type: none;
+}
+.mt-picker-rows {
+  padding-block: calc(var(--_row) * (var(--_rows) - 1) / 2);
+}
+.mt-picker-row {
+  display: flex;
+  height: var(--_row);
+  padding: 2px;
+  scroll-snap-align: center;
+}
+.mt-picker-cell {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 0 var(--mt-space-3);
+  border: var(--mt-border-w) solid var(--mt-border);
+  color: var(--mt-text);
+  font-size: var(--mt-text-lg);
+  font-weight: 300;
+  white-space: nowrap;
+}
+.mt-picker-row[data-offset='1'] {
+  opacity: 0.6;
+}
+.mt-picker-row[data-offset='2'] {
+  opacity: 0.35;
+}
+.mt-picker-row[data-offset='3'] {
+  opacity: 0.2;
+}
+.mt-picker-row[data-selected] .mt-picker-cell {
+  border-color: var(--mt-accent);
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
+}
+.mt-picker-column:focus-visible {
+  outline-offset: 0;
+}
+.mt-picker[data-disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
