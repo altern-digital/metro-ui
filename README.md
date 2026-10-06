@@ -4,9 +4,19 @@ A very light **Metro** (Windows 8 / 10 / Windows Phone) UI library for React. Fl
 
 **[Docs, live examples and playground →](https://altern-digital.github.io/metro-ui/)**
 
-```bash
-bun add @altern-digital/metro-ui motion     # or npm / pnpm / yarn
+The package is published to **GitHub Packages**, not npm. Point the `@altern-digital` scope at GitHub once per project, then install as usual:
+
+```toml
+# bunfig.toml
+[install.scopes]
+"@altern-digital" = { token = "$GITHUB_TOKEN", url = "https://npm.pkg.github.com/" }
 ```
+
+```bash
+bun add @altern-digital/metro-ui motion
+```
+
+GitHub asks for a token even for public packages: a [classic personal access token](https://github.com/settings/tokens/new?scopes=read:packages) with `read:packages`, exported as `GITHUB_TOKEN` (in GitHub Actions, the job's own `GITHUB_TOKEN` with `packages: read` works). npm, pnpm and yarn use `.npmrc` instead, and no token at all is needed to install a release tarball; see [installation](https://altern-digital.github.io/metro-ui/#/docs/installation).
 
 ```tsx
 import '@altern-digital/metro-ui/styles.css'

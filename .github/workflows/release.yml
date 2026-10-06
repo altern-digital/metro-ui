@@ -1,14 +1,15 @@
 name: release
 
-# Push a tag like v0.1.0 (matching package.json) to publish to npm and attach
-# the package tarball to a GitHub release, so it can also be installed from GitHub.
+# Push a tag like v0.1.0 (matching package.json) to publish the package to
+# GitHub Packages (npm.pkg.github.com) and attach the same tarball to a GitHub
+# release. Publishing uses the workflow's own GITHUB_TOKEN: no secret to set.
 on:
   push:
     tags: ['v*']
 
 permissions:
   contents: write
-  id-token: write
+  packages: write
 
 jobs:
   publish:
@@ -19,15 +20,16 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
+          registry-url: https://npm.pkg.github.com
+          scope: '@altern-digital'
       - run: bun install --frozen-lockfile
       - name: tag matches package.json
         run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
       - run: bun run check
       - run: npm pack
-      - run: npm publish --provenance --access public
+      - run: npm publish altern-digital-metro-ui-*.tgz
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ github.token }}
       - name: github release
         run: gh release create "$GITHUB_REF_NAME" altern-digital-metro-ui-*.tgz --title "$GITHUB_REF_NAME" --notes-file CHANGELOG.md
         env:

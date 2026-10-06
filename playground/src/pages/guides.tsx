@@ -63,8 +63,28 @@ export const GUIDES: Guide[] = [
     body: () => (
       <>
         <h2>1. install</h2>
-        <Code code={'bun add @altern-digital/metro-ui motion'} label="bun" />
-        <Code code={'npm install @altern-digital/metro-ui motion\n# or: pnpm add / yarn add'} label="npm" />
+        <p>
+          The package lives on GitHub Packages, not npm. Map the {c('@altern-digital')} scope to GitHub once per project, and every install of it
+          comes from there while everything else still comes from npm.
+        </p>
+        <Code
+          code={`# bunfig.toml
+[install.scopes]
+"@altern-digital" = { token = "$GITHUB_TOKEN", url = "https://npm.pkg.github.com/" }`}
+          label="bun"
+        />
+        <Code
+          code={`# .npmrc (npm, pnpm, yarn 1)
+@altern-digital:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=\${GITHUB_TOKEN}`}
+          label="npm"
+        />
+        <Code code={'bun add @altern-digital/metro-ui motion'} />
+        <p>
+          GitHub asks for a token even for public packages. Make a classic personal access token with only {c('read:packages')} and export it as{' '}
+          {c('GITHUB_TOKEN')}. In GitHub Actions, give the job {c('permissions: packages: read')} and pass {c('secrets.GITHUB_TOKEN')}. Commit the
+          config file; never commit the token.
+        </p>
         <p>
           {c('react')} and {c('react-dom')} 19 are peers too. Icons are not bundled: use any React icon set. The examples here use{' '}
           {c('react-icons/vsc')} (the VS Code icons, which match Metro well).
@@ -114,9 +134,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </p>
         <h2>Vite, Remix, anything else</h2>
         <p>Same two lines: import the stylesheet once at the entry, render the provider at the root.</p>
-        <h2>from GitHub instead of npm</h2>
+        <h2>without a token</h2>
         <Code code={'bun add https://github.com/altern-digital/metro-ui/releases/download/v0.1.0/altern-digital-metro-ui-0.1.0.tgz'} />
-        <p>Every GitHub release carries the built package as a tarball, the same file npm serves.</p>
+        <p>Every GitHub release also carries the built package as a tarball, the same file the registry serves. It installs with no setup, but you bump the URL by hand to upgrade.</p>
       </>
     ),
   },
