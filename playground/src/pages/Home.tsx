@@ -56,6 +56,10 @@ export function Home() {
           </Button>
         </div>
         <Code code="bun add @altern-digital/metro-ui motion" className="site-hero-install" />
+        <p className="site-hero-note">
+          Published on <a href={`${REPO}/pkgs/npm/metro-ui`}>GitHub Packages</a>: map the <code>@altern-digital</code> scope once,{' '}
+          <a href={href('/docs/installation')}>see installation</a>.
+        </p>
       </section>
 
       <section className="site-home-start" aria-label="start">

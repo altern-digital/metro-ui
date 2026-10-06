@@ -779,6 +779,11 @@ body:has(.mt-root[data-mt-mode='light']) {
 .site-hero-install {
   max-width: 480px;
 }
+.site-hero-note {
+  margin: var(--mt-space-2) 0 0;
+  color: var(--mt-muted);
+  font-size: var(--mt-text-sm);
+}
 .site-home-start {
   margin: 0 calc(var(--mt-space-6) * -1);
   padding: 0 var(--mt-space-6) var(--mt-space-6);

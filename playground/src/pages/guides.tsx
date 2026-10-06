@@ -64,7 +64,7 @@ export const GUIDES: Guide[] = [
       <>
         <h2>1. install</h2>
         <p>
-          The package lives on GitHub Packages, not npm. Map the {c('@altern-digital')} scope to GitHub once per project, and every install of it
+          The package lives on <a href="https://github.com/altern-digital/metro-ui/pkgs/npm/metro-ui">GitHub Packages</a>, not npm. Map the {c('@altern-digital')} scope to GitHub once per project, and every install of it
           comes from there while everything else still comes from npm.
         </p>
         <Code

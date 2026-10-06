@@ -4,7 +4,7 @@ A very light **Metro** (Windows 8 / 10 / Windows Phone) UI library for React. Fl
 
 **[Docs, live examples and playground →](https://altern-digital.github.io/metro-ui/)**
 
-The package is published to **GitHub Packages**, not npm. Point the `@altern-digital` scope at GitHub once per project, then install as usual:
+The package is published to **[GitHub Packages](https://github.com/altern-digital/metro-ui/pkgs/npm/metro-ui)**, not npm. Point the `@altern-digital` scope at GitHub once per project, then install as usual:
 
 ```toml
 # bunfig.toml
