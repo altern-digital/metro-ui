@@ -9,7 +9,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg'
 interface ButtonOwnProps {
   /**
    * - `default`: a thin outline, for most actions.
-   * - `primary`: the accent outline Metro used for the main action.
+   * - `primary`: a soft accent fill for the main action.
    * - `accent`: filled with the accent, for the one thing to do on a screen.
    * - `text`: no outline, for actions in a row or a bar.
    * - `danger`: filled red, for what can't be undone.

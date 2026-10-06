@@ -15,7 +15,7 @@ export interface AppBarButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonE
 }
 
 /**
- * The Windows 8 / Windows Phone app bar button: an icon in a 2px circle with
+ * The Windows 8 / Windows Phone app bar button: an icon in a filled circle with
  * a small lowercase caption underneath. Pass `pressed` to make it a toggle.
  *
  * ```tsx

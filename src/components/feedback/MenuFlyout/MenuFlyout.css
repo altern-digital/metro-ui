@@ -4,8 +4,8 @@
   max-height: calc(100vh - 8px);
   overflow-y: auto;
   padding: var(--mt-space-1) 0;
-  background: var(--mt-panel);
-  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-raised);
+  border: 0;
   color: var(--mt-text);
 }
 .mt-menu:focus-visible {

@@ -1,10 +1,9 @@
 /*
- * Check box: a square 2px box beside its label. Checked or mixed, it fills
+ * Check box: a filled square beside its label. Checked or mixed, it fills
  * with the accent and the glyph is drawn in --mt-on-accent. The native
  * input is visually hidden; its focus ring is drawn on the box.
  */
 .mt-checkbox {
-  --_line: var(--mt-text);
   position: relative;
   display: inline-flex;
   align-items: flex-start;
@@ -23,20 +22,16 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border: var(--mt-border-w) solid var(--_line);
-  background: transparent;
+  background: var(--mt-fill);
   color: var(--mt-on-accent);
   font-size: 16px;
-}
-.mt-checkbox:is([data-checked], [data-indeterminate]) {
-  --_line: var(--mt-accent);
 }
 .mt-checkbox:is([data-checked], [data-indeterminate]) .mt-checkbox-box {
   background: var(--mt-accent);
 }
 @media (hover: hover) {
   .mt-checkbox:not([data-disabled], [data-checked], [data-indeterminate]):hover .mt-checkbox-box {
-    background: var(--mt-hover);
+    background: var(--mt-fill-hover);
   }
 }
 .mt-checkbox:not([data-disabled]):active .mt-checkbox-box {

@@ -1,5 +1,5 @@
 /*
- * App bar button: a glyph in a 2px circle, a small lowercase caption under
+ * App bar button: a glyph in a filled circle, a small lowercase caption under
  * it. The circle is one of the few allowed radii (CONTRIBUTING: "AppBarButton
  * (circle)"). Hover and press act on the circle, not the whole hit area: it
  * fills with the text colour and the glyph turns to the background, as on
@@ -30,8 +30,8 @@
   justify-content: center;
   width: var(--_size);
   height: var(--_size);
-  border: var(--mt-border-w) solid currentColor;
   border-radius: 50%;
+  background: var(--mt-fill);
   font-size: calc(var(--_size) * 0.45);
 }
 .mt-app-bar-button-circle > svg {
@@ -50,7 +50,7 @@
 
 @media (hover: hover) {
   .mt-app-bar-button:hover:not(:disabled) .mt-app-bar-button-circle {
-    background: var(--mt-hover);
+    background: var(--mt-fill-hover);
   }
 }
 /* The press tint goes on the circle, not the rectangle around it. */
@@ -59,7 +59,6 @@
 }
 .mt-app-bar-button[data-mt-press]:is(:active, [data-pressed]):not(:disabled) .mt-app-bar-button-circle,
 .mt-app-bar-button[data-on] .mt-app-bar-button-circle {
-  border-color: var(--mt-text);
   background: var(--mt-text);
   color: var(--mt-bg);
 }

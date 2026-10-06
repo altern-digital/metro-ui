@@ -11,9 +11,9 @@ bun run check        # typecheck, lint, test, build, size budgets
 ## Rules of the look (Metro / Windows 8–10)
 
 - **Square.** No `border-radius` except: AppBarButton (circle), Avatar (optional circle), status dots, and the ToggleSwitch track/thumb is square too (Windows 10 rounded them; we don't).
-- **Flat.** No gradients. No drop shadows. `box-shadow` is only ever an *inset* wash (hover/press tint) or an inset line (`inset 0 -2px` focus underline).
+- **Flat.** No gradients. No drop shadows. `box-shadow` is only ever an *inset* wash (hover/press tint) or an inset line (`inset 0 -2px` focus underline). Controls are filled (`--mt-fill`), never outlined: no borders on boxes, no outline on hover; hover lightens the fill. The only outline is the keyboard focus ring.
 - **Type does the work.** Segoe UI / Selawik via `--mt-font`. Big headings are weight 200, lowercase. Chrome labels (buttons, tabs, headers) are `text-transform: lowercase`; user content never is.
-- **One accent.** Colour comes from tokens only: `var(--mt-accent)`, `--mt-accent-text` (accent as text on the background), `--mt-on-accent` (text on an accent fill), `--mt-text`, `--mt-muted`, `--mt-bg`, `--mt-panel`, `--mt-raised`, `--mt-border`, `--mt-edge`, `--mt-danger/warning/success/info`, `--mt-tone-<name>`. Never a hex in component CSS except `#fff`/`#000` on a fill.
+- **One accent.** Colour comes from tokens only: `var(--mt-accent)`, `--mt-accent-text` (accent as text on the background), `--mt-on-accent` (text on an accent fill), `--mt-text`, `--mt-muted`, `--mt-bg`, `--mt-panel`, `--mt-raised`, `--mt-fill`, `--mt-fill-hover`, `--mt-border`, `--mt-danger/warning/success/info`, `--mt-tone-<name>`. Never a hex in component CSS except `#fff`/`#000` on a fill.
 - **Colour changes are instant** (no `transition` on colour/background). Movement uses `--mt-ease-enter` (arrive fast, settle) and `--mt-ease-exit` (accelerate away), or the variants in `src/motion`.
 - **Sizes from tokens**: `--mt-control-h` (follows density: 28/32/44), `--mt-control-px`, `--mt-space-1..8` (4,8,12,16,20,24,32,40), `--mt-text-xs..display` (11,12,13,15,18,24,28,34,42), `--mt-border-w` (2px), `--mt-z-*`.
 

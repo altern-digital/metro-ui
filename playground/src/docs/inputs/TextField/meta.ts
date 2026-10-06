@@ -3,7 +3,7 @@ import type { ComponentDoc } from '../../types'
 export default {
   name: 'TextField',
   category: 'inputs',
-  summary: 'The Metro text box: a white field with a 2px edge that turns accent on focus.',
+  summary: 'The Metro text box: a filled field whose underline turns accent on focus.',
   platform: 'all',
   description:
     'The label sits above, muted and lowercase. The edge turns accent while focused and red with `error`. `prefix` and `suffix` put an icon or a unit inside the field; `clearable` adds an × while there is text.\n\n`className` and `style` go on the root; every other native prop (`name`, `placeholder`, `type`, `autoComplete`, `ref`…) goes on the `<input>`, or the `<textarea>` with `multiline`. `onChange` receives the text first and the event second; the event is `null` when the clear button emptied the field.\n\nPasswordBox and SearchBox are built on it.',

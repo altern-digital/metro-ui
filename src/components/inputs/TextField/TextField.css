@@ -1,7 +1,6 @@
 /*
- * Text fields: the Metro white box with a 2px edge that turns accent on
- * focus and red on error. The edge is a border outside the fill, so it shows
- * against the page in both themes. Shared by PasswordBox and SearchBox.
+ * Text fields: a flat filled box with no outline; a 2px accent underline on
+ * focus, red on error. Shared by PasswordBox and SearchBox.
  */
 .mt-text-field {
   display: inline-flex;
@@ -20,21 +19,22 @@
   text-transform: lowercase;
 }
 .mt-text-field-box {
-  --_line: var(--mt-edge);
+  --_line: transparent;
   /* Hover and press washes that read on the white field in either theme. */
   --mt-hover: color-mix(in srgb, var(--mt-field-text) 8%, transparent);
   --mt-press: color-mix(in srgb, var(--mt-field-text) 16%, transparent);
   display: flex;
   align-items: stretch;
   min-height: var(--mt-control-h);
-  border: var(--mt-border-w) solid var(--_line);
+  border: 0;
+  /* No outline: a filled box, underlined in accent on focus and red on error. */
+  box-shadow: inset 0 calc(-1 * var(--mt-border-w)) 0 var(--_line);
   background: var(--mt-field-bg);
-  background-clip: padding-box;
   color: var(--mt-field-text);
 }
 @media (hover: hover) {
   .mt-text-field:not([data-disabled]) .mt-text-field-box:hover {
-    --_line: var(--mt-muted);
+    background: var(--mt-fill-hover);
   }
 }
 .mt-text-field .mt-text-field-box:focus-within {
@@ -107,8 +107,8 @@ textarea.mt-text-field-input[data-auto-resize] {
   flex: none;
   align-items: center;
   justify-content: center;
-  width: calc(var(--mt-control-h) - 2 * var(--mt-border-w));
-  min-height: calc(var(--mt-control-h) - 2 * var(--mt-border-w));
+  width: var(--mt-control-h);
+  min-height: var(--mt-control-h);
   margin: 0;
   padding: 0;
   border: 0;

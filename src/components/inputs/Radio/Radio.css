@@ -1,11 +1,10 @@
 /*
- * Radio: a 2px ring beside its label. Picked, the ring turns accent and a
- * dot appears inside, as in Windows 10. Radios are round: an allowed
+ * Radio: a filled circle beside its label. Picked, it fills with the accent
+ * and a dot appears inside. Radios are round: an allowed
  * exception to "square", like the AppBarButton circle, because Windows 8
  * and 10 drew them as circles too.
  */
 .mt-radio {
-  --_line: var(--mt-text);
   position: relative;
   display: inline-flex;
   align-items: flex-start;
@@ -24,30 +23,30 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border: var(--mt-border-w) solid var(--_line);
   border-radius: 50%;
+  background: var(--mt-fill);
 }
 .mt-radio-circle::after {
   content: '';
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--mt-text);
+  background: var(--mt-on-accent);
   visibility: hidden;
 }
-.mt-radio[data-checked] {
-  --_line: var(--mt-accent);
+.mt-radio[data-checked] .mt-radio-circle {
+  background: var(--mt-accent);
 }
 .mt-radio[data-checked] .mt-radio-circle::after {
   visibility: visible;
 }
 @media (hover: hover) {
-  .mt-radio:not([data-disabled]):hover .mt-radio-circle {
-    background: var(--mt-hover);
+  .mt-radio:not([data-disabled], [data-checked]):hover .mt-radio-circle {
+    background: var(--mt-fill-hover);
   }
 }
 .mt-radio:not([data-disabled]):active .mt-radio-circle {
-  background: var(--mt-press);
+  box-shadow: inset 0 0 0 100vmax var(--mt-press);
 }
 .mt-radio-input:focus-visible + .mt-radio-circle {
   outline: 2px solid var(--mt-focus);

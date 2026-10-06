@@ -1,7 +1,6 @@
 /*
- * Toggle switch, Windows 8 / Phone style: a square 2px track with a gap
- * inside, filled with the accent when on, and a square thumb the full height
- * of the track that slides across. Square on purpose (Windows 10 rounded
+ * Toggle switch, flat: a filled square track, accent when on, and a square
+ * thumb the full height of the track that slides across. Square on purpose (Windows 10 rounded
  * them; we don't). Only the thumb moves; colours change instantly.
  */
 .mt-toggle-switch {
@@ -32,18 +31,16 @@
   flex: none;
   width: var(--_w);
   height: var(--_h);
-  padding: 2px;
-  border: var(--mt-border-w) solid var(--mt-text);
-  background-clip: content-box;
+  background: var(--mt-fill);
 }
 .mt-toggle-switch[data-checked] .mt-toggle-switch-track {
   background-color: var(--mt-accent);
 }
 .mt-toggle-switch-thumb {
   position: absolute;
-  top: calc(-1 * var(--mt-border-w));
-  bottom: calc(-1 * var(--mt-border-w));
-  left: calc(-1 * var(--mt-border-w));
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: var(--_thumb);
   background: var(--mt-text);
   transition: transform var(--mt-dur-fast) var(--mt-ease-enter);
@@ -58,7 +55,7 @@
 }
 @media (hover: hover) {
   .mt-toggle-switch:not([data-disabled], [data-checked]):hover .mt-toggle-switch-track {
-    background-color: var(--mt-hover);
+    background-color: var(--mt-fill-hover);
   }
 }
 .mt-toggle-switch-input:focus-visible + .mt-toggle-switch-track {

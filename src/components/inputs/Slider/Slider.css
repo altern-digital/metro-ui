@@ -89,7 +89,7 @@
   left: var(--_x);
   min-width: 28px;
   padding: 2px var(--mt-space-2);
-  border: 1px solid var(--mt-edge);
+  border: 0;
   background: var(--mt-raised);
   color: var(--mt-text);
   font-size: var(--mt-text-sm);

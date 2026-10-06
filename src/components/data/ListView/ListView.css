@@ -24,9 +24,8 @@
   width: calc(var(--mt-control-h) + 12px);
   height: calc(var(--mt-control-h) + 12px);
   padding: 0 0 2px 6px;
-  outline: var(--mt-border-w) solid var(--mt-accent);
-  outline-offset: calc(-1 * var(--mt-border-w));
-  color: var(--mt-accent-text);
+  background: var(--mt-accent);
+  color: var(--mt-on-accent);
   font-size: var(--mt-text-xl);
   font-weight: 300;
   line-height: 1;

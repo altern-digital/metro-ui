@@ -18,8 +18,8 @@
   gap: var(--mt-space-3);
   width: 100%;
   padding: var(--mt-space-3) var(--mt-space-2) var(--mt-space-3) var(--mt-space-4);
-  background: var(--mt-panel);
-  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-raised);
+  border: 0;
   color: var(--mt-text);
   font-size: var(--mt-text-sm);
   line-height: 1.4;

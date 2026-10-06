@@ -44,7 +44,7 @@ type NativeProps = Omit<InputHTMLAttributes<HTMLInputElement> & TextareaHTMLAttr
 export type TextFieldProps = TextFieldOwnProps & NativeProps
 
 /**
- * A Metro text box: a white field with a 2px edge that turns accent on
+ * A Metro text box: a filled field whose underline turns accent on
  * focus, its label above in lowercase. Native props (`name`, `placeholder`,
  * `type`, `autoComplete`…) go on the `<input>`.
  *

@@ -1,11 +1,11 @@
 /*
- * Buttons: a flat rectangle, its outline drawn inside (outline-offset) so
- * every variant has the same box. Colour changes are instant.
+ * Buttons: a flat filled rectangle with no outline. Hover lightens the fill;
+ * colour changes are instant. Only keyboard focus draws a ring.
  */
 .mt-button {
   --_fg: var(--mt-text);
-  --_bg: transparent;
-  --_line: var(--mt-edge);
+  --_bg: var(--mt-fill);
+  --_hover: var(--mt-fill-hover);
   position: relative;
   display: inline-flex;
   flex: none;
@@ -17,8 +17,7 @@
   margin: 0;
   padding: 0 var(--mt-control-px);
   border: 0;
-  outline: var(--mt-border-w) solid var(--_line);
-  outline-offset: calc(-1 * var(--mt-border-w));
+  outline: none;
   background: var(--_bg);
   color: var(--_fg);
   font: inherit;
@@ -63,35 +62,31 @@
 
 .mt-button[data-variant='primary'] {
   --_fg: var(--mt-accent-text);
-  --_line: var(--mt-accent);
+  --_bg: var(--mt-accent-soft);
+  --_hover: var(--mt-accent-soft-hover);
 }
 .mt-button[data-variant='accent'] {
   --_fg: var(--mt-on-accent);
   --_bg: var(--mt-accent);
-  --_line: var(--mt-accent);
+  --_hover: var(--mt-accent-hover);
 }
 .mt-button[data-variant='danger'] {
   --_fg: #fff;
   --_bg: var(--mt-danger);
-  --_line: var(--mt-danger);
+  --_hover: var(--mt-danger-hover);
 }
 .mt-button[data-variant='text'] {
-  --_line: transparent;
+  --_bg: transparent;
+  --_hover: var(--mt-hover);
 }
 
 @media (hover: hover) {
   .mt-button:hover:not(:disabled, [aria-disabled='true']) {
-    --_line: var(--mt-text);
-  }
-  .mt-button[data-variant='primary']:hover:not(:disabled, [aria-disabled='true']) {
-    --_fg: var(--mt-text);
-  }
-  .mt-button:is([data-variant='accent'], [data-variant='danger']):hover:not(:disabled, [aria-disabled='true']) {
-    --_line: var(--mt-hover-outline);
+    background: var(--_hover);
   }
 }
 .mt-button:focus-visible {
-  --_line: var(--mt-focus);
+  outline: var(--mt-border-w) solid var(--mt-focus);
   outline-offset: calc(-1 * var(--mt-border-w));
 }
 .mt-button:is(:disabled, [aria-disabled='true']) {

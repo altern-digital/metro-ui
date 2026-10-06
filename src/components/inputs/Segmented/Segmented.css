@@ -1,12 +1,12 @@
 /*
- * Segmented: joined flat segments inside one 2px edge, a thin line between
- * them; the picked one is filled with the accent.
+ * Segmented: joined flat segments on one filled track; the picked one is
+ * filled with the accent.
  */
 .mt-segmented {
   --_h: var(--mt-control-h);
   display: inline-flex;
   max-width: 100%;
-  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-fill);
   vertical-align: top;
 }
 .mt-segmented[data-size='sm'] {
@@ -23,7 +23,7 @@
   justify-content: center;
   gap: var(--mt-space-2);
   min-width: 0;
-  min-height: calc(var(--_h) - 2 * var(--mt-border-w));
+  min-height: var(--_h);
   margin: 0;
   padding: 0 var(--mt-control-px);
   border: 0;
@@ -46,8 +46,10 @@
 .mt-segmented[data-block] .mt-segmented-item {
   flex: 1;
 }
-.mt-segmented-item + .mt-segmented-item {
-  border-left: 1px solid var(--mt-border);
+@media (hover: hover) {
+  .mt-segmented-item:not([data-selected], :disabled):hover {
+    background: var(--mt-fill-hover);
+  }
 }
 .mt-segmented-item[data-selected] {
   background: var(--mt-accent);

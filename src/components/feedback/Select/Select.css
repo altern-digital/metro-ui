@@ -1,4 +1,4 @@
-/* A ComboBox: the field's white box with a 2px edge, a chevron, and a flat list. */
+/* A ComboBox: the field's filled box, a chevron, and a flat filled list. */
 .mt-select {
   display: inline-flex;
   flex-direction: column;
@@ -16,20 +16,21 @@
   text-transform: lowercase;
 }
 .mt-select-box {
-  --_line: var(--mt-edge);
+  --_line: transparent;
   --mt-hover: color-mix(in srgb, var(--mt-field-text) 8%, transparent);
   --mt-press: color-mix(in srgb, var(--mt-field-text) 16%, transparent);
   display: flex;
   align-items: stretch;
   min-height: var(--mt-control-h);
-  border: var(--mt-border-w) solid var(--_line);
+  border: 0;
+  /* No outline: a filled box, underlined in accent on focus and red on error. */
+  box-shadow: inset 0 calc(-1 * var(--mt-border-w)) 0 var(--_line);
   background: var(--mt-field-bg);
-  background-clip: padding-box;
   color: var(--mt-field-text);
 }
 @media (hover: hover) {
   .mt-select:not([data-disabled]) .mt-select-box:hover {
-    --_line: var(--mt-muted);
+    background: var(--mt-fill-hover);
   }
 }
 .mt-select .mt-select-box:focus-within,
@@ -106,8 +107,8 @@
   display: flex;
   flex-direction: column;
   max-height: min(360px, calc(100vh - 8px));
-  background: var(--mt-panel);
-  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-raised);
+  border: 0;
   color: var(--mt-text);
 }
 .mt-select-list {
@@ -166,21 +167,21 @@
 .mt-select-search {
   flex: none;
   padding: var(--mt-space-2);
-  border-bottom: 1px solid var(--mt-border);
 }
 .mt-select-search input {
   box-sizing: border-box;
   width: 100%;
   height: 32px;
   padding: 0 var(--mt-space-2);
-  border: var(--mt-border-w) solid var(--mt-edge);
-  background: var(--mt-field-bg);
-  color: var(--mt-field-text);
+  border: 0;
+  box-shadow: inset 0 calc(-1 * var(--mt-border-w)) 0 transparent;
+  background: var(--mt-fill-hover);
+  color: var(--mt-text);
   font: inherit;
   font-size: var(--mt-text-sm);
 }
 .mt-select-search input:focus {
-  border-color: var(--mt-accent);
+  box-shadow: inset 0 calc(-1 * var(--mt-border-w)) 0 var(--mt-accent);
   outline: none;
 }
 

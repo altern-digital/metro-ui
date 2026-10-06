@@ -65,14 +65,14 @@
   inset: 0;
   pointer-events: none;
 }
+/* Hover tints the tile; the press tint, later, wins while pressed. */
+@media (hover: hover) {
+  .mt-tile[data-pressable]:hover:not(:disabled, [aria-disabled='true'])::after {
+    background: var(--mt-hover);
+  }
+}
 .mt-tile[data-pressable]:is(:active, [data-pressed]):not(:disabled, [aria-disabled='true'])::after {
   background: var(--mt-press);
-}
-@media (hover: hover) {
-  .mt-tile[data-pressable]:hover:not(:disabled, [aria-disabled='true']) {
-    outline: 3px solid var(--mt-hover-outline);
-    outline-offset: -3px;
-  }
 }
 .mt-tile:focus-visible {
   outline: 3px solid var(--mt-focus);

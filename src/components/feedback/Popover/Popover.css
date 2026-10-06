@@ -4,8 +4,8 @@
   max-height: calc(100vh - 8px);
   overflow: auto;
   padding: var(--mt-space-3) var(--mt-space-4);
-  background: var(--mt-panel);
-  border: var(--mt-border-w) solid var(--mt-edge);
+  background: var(--mt-raised);
+  border: 0;
   color: var(--mt-text);
   font-size: var(--mt-text-base);
   overscroll-behavior: contain;

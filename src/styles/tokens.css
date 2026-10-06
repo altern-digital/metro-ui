@@ -97,13 +97,15 @@
   --mt-bg: #000;
   --mt-panel: #1d1d1d;
   --mt-raised: #2b2b2b;
+  --mt-fill: #2b2b2b;
+  --mt-fill-hover: #3d3d3d;
   --mt-border: #333;
   --mt-edge: #555;
   --mt-text: #fff;
   --mt-muted: #9a9a9a;
   --mt-disabled: #5c5c5c;
-  --mt-field-bg: #fff;
-  --mt-field-text: #000;
+  --mt-field-bg: var(--mt-fill);
+  --mt-field-text: var(--mt-text);
   --mt-tile-default: #3c3c3c;
   --mt-press: rgb(255 255 255 / 0.16);
   --mt-hover-outline: rgb(255 255 255 / 0.35);
@@ -120,13 +122,15 @@
   --mt-bg: #fff;
   --mt-panel: #f3f3f3;
   --mt-raised: #e6e6e6;
+  --mt-fill: #e6e6e6;
+  --mt-fill-hover: #d6d6d6;
   --mt-border: #dadada;
   --mt-edge: #a6a6a6;
   --mt-text: #161616;
   --mt-muted: #6b6b6b;
   --mt-disabled: #b3b3b3;
-  --mt-field-bg: #fff;
-  --mt-field-text: #161616;
+  --mt-field-bg: var(--mt-fill);
+  --mt-field-text: var(--mt-text);
   --mt-tile-default: #6d6d6d;
   --mt-press: rgb(0 0 0 / 0.12);
   --mt-hover-outline: rgb(0 0 0 / 0.3);
@@ -142,13 +146,15 @@
     --mt-bg: #fff;
     --mt-panel: #f3f3f3;
     --mt-raised: #e6e6e6;
+    --mt-fill: #e6e6e6;
+    --mt-fill-hover: #d6d6d6;
     --mt-border: #dadada;
     --mt-edge: #a6a6a6;
     --mt-text: #161616;
     --mt-muted: #6b6b6b;
     --mt-disabled: #b3b3b3;
-    --mt-field-bg: #fff;
-    --mt-field-text: #161616;
+    --mt-field-bg: var(--mt-fill);
+    --mt-field-text: var(--mt-text);
     --mt-tile-default: #6d6d6d;
     --mt-press: rgb(0 0 0 / 0.12);
     --mt-hover-outline: rgb(0 0 0 / 0.3);
@@ -165,6 +171,8 @@
   --mt-accent-hover: color-mix(in srgb, var(--mt-accent) 85%, #fff);
   --mt-accent-press: color-mix(in srgb, var(--mt-accent) 80%, #000);
   --mt-accent-soft: color-mix(in srgb, var(--mt-accent) 22%, transparent);
+  --mt-accent-soft-hover: color-mix(in srgb, var(--mt-accent) 32%, transparent);
+  --mt-danger-hover: color-mix(in srgb, var(--mt-danger) 85%, #fff);
 }
 
 /* Density: how tall controls are. `auto` turns to touch under a coarse pointer. */

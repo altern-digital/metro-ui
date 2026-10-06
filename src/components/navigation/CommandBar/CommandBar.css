@@ -124,13 +124,12 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: var(--mt-border-w) solid currentColor;
+  background: var(--mt-fill);
   /* The app bar button is one of the few circles in Metro. */
   border-radius: 50%;
   font-size: 18px;
 }
 .mt-command-bar[data-platform='mobile'] .mt-command-bar-button[data-toggled] .mt-command-bar-icon {
-  border-color: var(--mt-accent);
   background: var(--mt-accent);
   color: var(--mt-on-accent);
 }

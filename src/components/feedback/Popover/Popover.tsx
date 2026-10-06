@@ -39,7 +39,7 @@ export interface PopoverProps extends MotionSafe<Omit<HTMLAttributes<HTMLDivElem
 const HOVER_CLOSE_MS = 120
 
 /**
- * A Windows flyout: a flat panel beside its trigger, with a 2px edge and no
+ * A Windows flyout: a flat panel beside its trigger, filled, with no
  * shadow. It flips and stays on screen, closes on Escape or a click outside,
  * and gives focus back to the trigger.
  *
