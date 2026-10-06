@@ -1,0 +1,34 @@
+name: release
+
+# Push a tag like v0.1.0 (matching package.json) to publish to npm and attach
+# the package tarball to a GitHub release, so it can also be installed from GitHub.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: bun install --frozen-lockfile
+      - name: tag matches package.json
+        run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
+      - run: bun run check
+      - run: npm pack
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: github release
+        run: gh release create "$GITHUB_REF_NAME" altern-digital-metro-ui-*.tgz --title "$GITHUB_REF_NAME" --notes-file CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ github.token }}
