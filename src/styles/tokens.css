@@ -1,0 +1,184 @@
+/*
+ * Metro tokens. Flat rectangles, solid colour, no radii, gradients or
+ * shadows: type does the work, with big, light, lowercase headings.
+ *
+ * Every value is a custom property on `.mt-root` (what ConfigProvider
+ * renders), with `:root` as a fallback so a component outside any provider
+ * still looks right. Dark is the default, as on Windows Phone. The accent is
+ * set inline by ConfigProvider; its shades derive here with color-mix, so a
+ * new accent costs no JavaScript.
+ *
+ * Keep the tones in step with TONES in src/config/theme.ts (a test checks).
+ */
+:where(:root),
+.mt-root {
+  /* The 13 Metro tones, for tiles and for the accent. */
+  --mt-tone-slate: #647687;
+  --mt-tone-gray: #8a8a8a;
+  --mt-tone-blue: #1ba1e2;
+  --mt-tone-cyan: #00b7c3;
+  --mt-tone-teal: #00aba9;
+  --mt-tone-green: #60a917;
+  --mt-tone-lime: #a4c400;
+  --mt-tone-amber: #f0a30a;
+  --mt-tone-orange: #fa6800;
+  --mt-tone-red: #e51400;
+  --mt-tone-pink: #d80073;
+  --mt-tone-purple: #aa00ff;
+  --mt-tone-indigo: #6a00ff;
+
+  --mt-accent: var(--mt-tone-blue);
+  --mt-on-accent: #fff;
+  --mt-danger: #e51400;
+  --mt-warning: #f0a30a;
+  --mt-success: #60a917;
+  --mt-info: var(--mt-accent);
+
+  /* Type. Weights are 200 (titles), 300 (subtitles, numbers), 400, 600. */
+  --mt-font: 'Segoe UI', 'Selawik', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --mt-mono: 'Cascadia Code', 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --mt-text-xs: 11px;
+  --mt-text-sm: 12px;
+  --mt-text-base: 13px;
+  --mt-text-md: 15px;
+  --mt-text-lg: 18px;
+  --mt-text-xl: 24px;
+  --mt-text-2xl: 28px;
+  --mt-text-3xl: 34px;
+  --mt-text-display: 42px;
+
+  /* Space, on a 4px grid. */
+  --mt-space-1: 4px;
+  --mt-space-2: 8px;
+  --mt-space-3: 12px;
+  --mt-space-4: 16px;
+  --mt-space-5: 20px;
+  --mt-space-6: 24px;
+  --mt-space-7: 32px;
+  --mt-space-8: 40px;
+
+  /* Controls: their height follows the density (below). */
+  --mt-control-h: 32px;
+  --mt-control-px: 12px;
+  --mt-border-w: 2px;
+
+  /* Tiles: Start-screen cells. A medium tile is one cell, wide is two across. */
+  --mt-tile-size: 150px;
+  --mt-tile-gap: 8px;
+
+  /* Chrome. */
+  --mt-nav-w: 260px;
+  --mt-nav-compact-w: 48px;
+  --mt-tab-bar-h: 56px;
+  --mt-app-bar-h: 48px;
+
+  /* Stacking. */
+  --mt-z-sticky: 10;
+  --mt-z-nav: 50;
+  --mt-z-dropdown: 100;
+  --mt-z-overlay: 150;
+  --mt-z-dialog: 160;
+  --mt-z-toast: 200;
+  --mt-z-tooltip: 300;
+
+  /* Motion: things arrive fast and settle, and leave by accelerating away. */
+  --mt-ease-enter: cubic-bezier(0.1, 0.9, 0.2, 1);
+  --mt-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --mt-dur-fast: 120ms;
+  --mt-dur: 250ms;
+  --mt-dur-slow: 350ms;
+}
+
+/* Dark: surfaces from Windows Phone and ALTC. */
+:where(:root),
+.mt-root,
+.mt-root[data-mt-mode='dark'] {
+  color-scheme: dark;
+  --mt-bg: #000;
+  --mt-panel: #1d1d1d;
+  --mt-raised: #2b2b2b;
+  --mt-border: #333;
+  --mt-edge: #555;
+  --mt-text: #fff;
+  --mt-muted: #9a9a9a;
+  --mt-disabled: #5c5c5c;
+  --mt-field-bg: #fff;
+  --mt-field-text: #000;
+  --mt-tile-default: #3c3c3c;
+  --mt-press: rgb(255 255 255 / 0.16);
+  --mt-hover-outline: rgb(255 255 255 / 0.35);
+  --mt-hover: rgb(255 255 255 / 0.08);
+  --mt-focus: #fff;
+  --mt-scrim: rgb(0 0 0 / 0.7);
+  /* Accent as text on the background: lifted a little so it reads on black. */
+  --mt-accent-text: color-mix(in srgb, var(--mt-accent) 80%, #fff);
+}
+
+/* Light: surfaces from Windows 10 and DS Mutasi. */
+.mt-root[data-mt-mode='light'] {
+  color-scheme: light;
+  --mt-bg: #fff;
+  --mt-panel: #f3f3f3;
+  --mt-raised: #e6e6e6;
+  --mt-border: #dadada;
+  --mt-edge: #a6a6a6;
+  --mt-text: #161616;
+  --mt-muted: #6b6b6b;
+  --mt-disabled: #b3b3b3;
+  --mt-field-bg: #fff;
+  --mt-field-text: #161616;
+  --mt-tile-default: #6d6d6d;
+  --mt-press: rgb(0 0 0 / 0.12);
+  --mt-hover-outline: rgb(0 0 0 / 0.3);
+  --mt-hover: rgb(0 0 0 / 0.05);
+  --mt-focus: #000;
+  --mt-scrim: rgb(0 0 0 / 0.45);
+  --mt-accent-text: color-mix(in srgb, var(--mt-accent) 75%, #000);
+}
+
+@media (prefers-color-scheme: light) {
+  .mt-root[data-mt-mode='system'] {
+    color-scheme: light;
+    --mt-bg: #fff;
+    --mt-panel: #f3f3f3;
+    --mt-raised: #e6e6e6;
+    --mt-border: #dadada;
+    --mt-edge: #a6a6a6;
+    --mt-text: #161616;
+    --mt-muted: #6b6b6b;
+    --mt-disabled: #b3b3b3;
+    --mt-field-bg: #fff;
+    --mt-field-text: #161616;
+    --mt-tile-default: #6d6d6d;
+    --mt-press: rgb(0 0 0 / 0.12);
+    --mt-hover-outline: rgb(0 0 0 / 0.3);
+    --mt-hover: rgb(0 0 0 / 0.05);
+    --mt-focus: #000;
+    --mt-scrim: rgb(0 0 0 / 0.45);
+    --mt-accent-text: color-mix(in srgb, var(--mt-accent) 75%, #000);
+  }
+}
+
+/* Accent shades, worked out from whatever accent is set. */
+:where(:root),
+.mt-root {
+  --mt-accent-hover: color-mix(in srgb, var(--mt-accent) 85%, #fff);
+  --mt-accent-press: color-mix(in srgb, var(--mt-accent) 80%, #000);
+  --mt-accent-soft: color-mix(in srgb, var(--mt-accent) 22%, transparent);
+}
+
+/* Density: how tall controls are. `auto` turns to touch under a coarse pointer. */
+.mt-root[data-mt-density='compact'] {
+  --mt-control-h: 28px;
+  --mt-control-px: 8px;
+}
+.mt-root[data-mt-density='touch'] {
+  --mt-control-h: 44px;
+  --mt-control-px: 16px;
+}
+@media (pointer: coarse) {
+  .mt-root[data-mt-density='auto'] {
+    --mt-control-h: 44px;
+    --mt-control-px: 16px;
+  }
+}

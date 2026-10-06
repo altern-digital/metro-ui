@@ -1,0 +1,94 @@
+/* The root every ConfigProvider renders: it paints the theme it carries. */
+.mt-root {
+  font-family: var(--mt-font);
+  font-size: var(--mt-text-base);
+  line-height: 1.4;
+  color: var(--mt-text);
+  background: var(--mt-bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+/* A nested provider that only changes the accent shouldn't paint a new box. */
+.mt-root .mt-root[data-mt-nested] {
+  background: none;
+}
+
+.mt-root *,
+.mt-root *::before,
+.mt-root *::after {
+  box-sizing: border-box;
+}
+
+/* Metro has no rounded corners. The few circles (app bar buttons, avatars,
+   status dots) opt back in on their own rule. */
+:where(.mt-root) :where([class^='mt-'], [class*=' mt-']) {
+  border-radius: 0;
+}
+
+:where(.mt-root) :where(button, input, select, textarea) {
+  font: inherit;
+  color: inherit;
+}
+
+/* Focus rings for the keyboard only, flat and inside the edge. */
+:where(.mt-root) :focus {
+  outline: none;
+}
+:where(.mt-root) :focus-visible {
+  outline: 2px solid var(--mt-focus);
+  outline-offset: -2px;
+}
+
+/* Hover only where there is hover, so a tap doesn't leave it stuck on. A
+   flat wash, like the press tint: an inset shadow over any background. */
+@media (hover: hover) {
+  [data-mt-hover]:hover:not(:disabled, [aria-disabled='true']) {
+    box-shadow: inset 0 0 0 100vmax var(--mt-hover);
+  }
+}
+
+/*
+ * Pressed: a tint and nothing else. It comes in the same frame as the
+ * finger, so colour changes are instant, never eased. [data-pressed] is set
+ * by the press tracker (hooks/press.ts): inside a scroller Chrome holds
+ * :active back until it knows the touch isn't a scroll, which reads as lag.
+ * The tint is an inset shadow, so it shades any background without layout.
+ * It comes after hover, so a press under the mouse still shows.
+ */
+[data-mt-press]:is(:active, [data-pressed]):not(:disabled, [aria-disabled='true']) {
+  box-shadow: inset 0 0 0 100vmax var(--mt-press);
+}
+
+/* Reduced or no motion: CSS animations stop; motion/react follows MotionConfig. */
+.mt-root[data-mt-motion='none'] *,
+.mt-root[data-mt-motion='none'] *::before,
+.mt-root[data-mt-motion='none'] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mt-root:not([data-mt-motion='full']) *,
+  .mt-root:not([data-mt-motion='full']) *::before,
+  .mt-root:not([data-mt-motion='full']) *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+  }
+}
+
+.mt-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mt-portal {
+  position: relative;
+  z-index: var(--mt-z-overlay);
+}
