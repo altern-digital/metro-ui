@@ -1,0 +1,33 @@
+.mt-show {
+  display: contents;
+}
+@media (max-width: 640px) {
+  .mt-show:is([data-from='medium'], [data-from='expanded']) {
+    display: none;
+  }
+}
+@media (min-width: 641px) {
+  .mt-show[data-below='medium'] {
+    display: none;
+  }
+}
+@media (max-width: 1007px) {
+  .mt-show[data-from='expanded'] {
+    display: none;
+  }
+}
+@media (min-width: 1008px) {
+  .mt-show[data-below='expanded'] {
+    display: none;
+  }
+}
+@media (pointer: coarse) {
+  .mt-show[data-pointer='fine'] {
+    display: none;
+  }
+}
+@media not (pointer: coarse) {
+  .mt-show[data-pointer='coarse'] {
+    display: none;
+  }
+}

@@ -1,0 +1,23 @@
+.mt-pressable {
+  /* A pressable that isn't styled otherwise inherits everything: a bare, flat hit area. */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  cursor: default;
+}
+button.mt-pressable,
+a.mt-pressable {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+button.mt-pressable {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: inherit;
+}
+.mt-pressable:is(:disabled, [aria-disabled='true']) {
+  opacity: 0.5;
+}

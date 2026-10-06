@@ -1,0 +1,14 @@
+.mt-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+}
+.mt-icon > svg {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}

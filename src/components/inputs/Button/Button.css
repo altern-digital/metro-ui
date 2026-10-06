@@ -1,0 +1,153 @@
+/*
+ * Buttons: a flat rectangle, its outline drawn inside (outline-offset) so
+ * every variant has the same box. Colour changes are instant.
+ */
+.mt-button {
+  --_fg: var(--mt-text);
+  --_bg: transparent;
+  --_line: var(--mt-edge);
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  min-height: var(--mt-control-h);
+  min-width: 0;
+  margin: 0;
+  padding: 0 var(--mt-control-px);
+  border: 0;
+  outline: var(--mt-border-w) solid var(--_line);
+  outline-offset: calc(-1 * var(--mt-border-w));
+  background: var(--_bg);
+  color: var(--_fg);
+  font: inherit;
+  font-size: var(--mt-text-base);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mt-button[data-keep-case] {
+  text-transform: none;
+}
+.mt-button[data-size='sm'] {
+  min-height: calc(var(--mt-control-h) - 8px);
+  padding: 0 calc(var(--mt-control-px) - 4px);
+  font-size: var(--mt-text-sm);
+}
+.mt-button[data-size='lg'] {
+  min-height: calc(var(--mt-control-h) + 8px);
+  padding: 0 calc(var(--mt-control-px) + 8px);
+  font-size: var(--mt-text-md);
+}
+.mt-button[data-block] {
+  display: flex;
+  width: 100%;
+}
+.mt-button[data-icon-only] {
+  padding: 0;
+  width: var(--mt-control-h);
+}
+.mt-button[data-size='sm'][data-icon-only] {
+  width: calc(var(--mt-control-h) - 8px);
+}
+.mt-button[data-size='lg'][data-icon-only] {
+  width: calc(var(--mt-control-h) + 8px);
+}
+
+.mt-button[data-variant='primary'] {
+  --_fg: var(--mt-accent-text);
+  --_line: var(--mt-accent);
+}
+.mt-button[data-variant='accent'] {
+  --_fg: var(--mt-on-accent);
+  --_bg: var(--mt-accent);
+  --_line: var(--mt-accent);
+}
+.mt-button[data-variant='danger'] {
+  --_fg: #fff;
+  --_bg: var(--mt-danger);
+  --_line: var(--mt-danger);
+}
+.mt-button[data-variant='text'] {
+  --_line: transparent;
+}
+
+@media (hover: hover) {
+  .mt-button:hover:not(:disabled, [aria-disabled='true']) {
+    --_line: var(--mt-text);
+  }
+  .mt-button[data-variant='primary']:hover:not(:disabled, [aria-disabled='true']) {
+    --_fg: var(--mt-text);
+  }
+  .mt-button:is([data-variant='accent'], [data-variant='danger']):hover:not(:disabled, [aria-disabled='true']) {
+    --_line: var(--mt-hover-outline);
+  }
+}
+.mt-button:focus-visible {
+  --_line: var(--mt-focus);
+  outline-offset: calc(-1 * var(--mt-border-w));
+}
+.mt-button:is(:disabled, [aria-disabled='true']) {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.mt-button-icon {
+  display: inline-flex;
+  flex: none;
+  font-size: 1.15em;
+}
+.mt-button-icon > svg {
+  width: 1em;
+  height: 1em;
+}
+.mt-button-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Loading: the label stays for width but goes invisible under the Metro dots. */
+.mt-button[data-loading] {
+  pointer-events: none;
+}
+.mt-button[data-loading] > :not(.mt-button-dots) {
+  visibility: hidden;
+}
+.mt-button-dots {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.mt-button-dots > i {
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  animation: mt-button-dot 1.2s var(--mt-ease-enter) infinite;
+}
+.mt-button-dots > i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.mt-button-dots > i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes mt-button-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+}

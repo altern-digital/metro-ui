@@ -2,3 +2,7 @@
 @layer metro;
 @import './tokens.css' layer(metro);
 @import './base.css' layer(metro);
+@import './../components/foundation/Icon/Icon.css' layer(metro);
+@import './../components/foundation/Pressable/Pressable.css' layer(metro);
+@import './../components/foundation/Show/Show.css' layer(metro);
+@import './../components/inputs/Button/Button.css' layer(metro);

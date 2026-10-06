@@ -60,6 +60,7 @@
     "happy-dom": "^20.14.5",
     "lightningcss": "^1.33.0",
     "oxlint": "^1.87.0",
+    "react-icons": "^5.7.0",
     "size-limit": "^14.1.0",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
